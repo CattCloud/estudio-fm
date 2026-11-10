@@ -9,8 +9,9 @@
   <meta name="theme-color" content="#C3C8CE">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fuentes/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/estilo.css">
-  <script type="module" src="js/app.js"></script>
+  <!-- El ?v= obliga al navegador a bajar los archivos nuevos: súbelo cada vez que cambies css o js. -->
+  <link rel="stylesheet" href="css/estilo.css?v=3">
+  <script type="module" src="js/app.js?v=3"></script>
 </head>
 <body data-sonando="no">
 
@@ -34,13 +35,15 @@
   <div class="franjas" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <main class="cuerpo">
-    <div class="parlante">
+    <div class="izquierda">
+    <div class="parlante" aria-hidden="true"></div>
+    <div class="volumen">
       <div class="perilla" id="perilla" role="slider" tabindex="0" aria-label="Volumen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-valuetext="80 %">
         <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="perilla-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ECEEF0"/><stop offset="1" stop-color="#A9AFB6"/></linearGradient>
           </defs>
-          <g id="perilla-marcas" stroke="#ECEEF0" stroke-width="2.5" stroke-linecap="round"></g>
+          <g id="perilla-marcas" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></g>
           <text x="24" y="184">0</text>
           <text x="176" y="184" text-anchor="end">10</text>
           <text id="perilla-valor" x="100" y="180" text-anchor="middle">VOL</text>
@@ -53,6 +56,7 @@
           </g>
         </svg>
       </div>
+    </div>
     </div>
 
     <div class="ventana">
