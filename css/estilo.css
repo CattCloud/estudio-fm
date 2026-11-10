@@ -1,0 +1,218 @@
+/* Estudio FM · radiocasete japonés de los 80
+   Escena fija de 1920 × 1050 (laptop de 18"), escalada para caber en la ventana. */
+
+@font-face { font-family: Archivo; font-style: normal; font-weight: 500 800; font-display: swap;
+  src: url(../fuentes/archivo-variable.woff2) format("woff2"); }
+@font-face { font-family: Archivo; font-style: italic; font-weight: 900; font-display: swap;
+  src: url(../fuentes/archivo-italic-900.woff2) format("woff2"); }
+@font-face { font-family: VT323; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(../fuentes/vt323-normal-400.woff2) format("woff2"); }
+@font-face { font-family: "M PLUS 1p"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url(../fuentes/mplus1p-normal-700.woff2) format("woff2"); }
+
+:root {
+  --plata-claro: #ECEEF0;
+  --plata: #D3D7DC;
+  --plata-fondo: #C3C8CE;
+  --plata-oscuro: #A9AFB6;
+  --negro: #151618;
+  --rojo: #D2232A;
+  --rojo-texto: #B01B22;   /* el rojo de la marca, oscurecido para leerse como texto */
+  --mostaza: #E3A92B;
+  --mostaza-texto: #85580A;
+  --lcd: #A9B98E;
+  --lcd-tinta: #1F2A14;
+  --gris: #4F555D;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; }
+[hidden] { display: none !important; }
+
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: linear-gradient(180deg, var(--plata-claro), var(--plata) 40%, var(--plata-fondo));
+  color: var(--negro);
+  font-family: Archivo, system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--rojo); color: #fff; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
+.sprite { position: absolute; }
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sin-js { position: fixed; inset: 0; display: grid; place-items: center; background: var(--plata); font: 700 24px Archivo; }
+
+/* ── Escena ───────────────────────────────────────────── */
+.escena {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--ancho, 1920px); height: 1050px;   /* más ancha que 1920 si la ventana es más ancha que la escena: cabecera y franjas sangran completas */
+  transform: translate(-50%, -50%) scale(var(--escala, 1));
+}
+
+/* ── Cabecera ─────────────────────────────────────────── */
+.cabecera {
+  height: 78px; padding: 0 calc((100% - 1824px) / 2);
+  display: flex; align-items: center; justify-content: space-between;
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px);
+}
+.marca { display: flex; align-items: center; gap: 20px; }
+.marca h1 { font: italic 900 40px/1 Archivo; letter-spacing: -.01em; }
+.jp { font: 700 17px/1 "M PLUS 1p", sans-serif; }
+.marca .jp { background: var(--negro); color: var(--plata-claro); padding: 7px 10px; border-radius: 3px; }
+.boton-lista {
+  font: 800 15px/1 Archivo; letter-spacing: .16em;
+  padding: 13px 20px; background: var(--negro); color: var(--plata-claro); border-radius: 4px;
+  transition: background .15s;
+}
+.boton-lista:hover { background: #2B2E33; }
+.boton-lista[aria-expanded="true"] { background: var(--rojo); }
+
+.franjas { height: 18px; display: grid; grid-template-rows: 1fr 1fr 1fr; }
+.franjas i:nth-child(1) { background: var(--rojo); }
+.franjas i:nth-child(2) { background: var(--mostaza); }
+.franjas i:nth-child(3) { background: var(--negro); }
+
+/* ── Cuerpo ───────────────────────────────────────────── */
+.cuerpo {
+  width: 1920px; margin-inline: auto;
+  display: grid; grid-template-columns: 300px 1028px 1fr; gap: 36px;
+  padding: 26px 48px 0; align-items: start;
+}
+.parlante {
+  height: 591px; border-radius: 14px;
+  background:
+    radial-gradient(circle, #2A2C30 3px, transparent 3.6px) 0 0 / 12px 12px,
+    linear-gradient(#5A5F66, #3A3E44);
+  box-shadow: inset 0 0 0 3px var(--plata-oscuro), inset 0 0 0 8px #2A2C30;
+}
+
+/* Video: ventana negra con pantalla 16:9 */
+.ventana { width: 1028px; height: 591px; padding: 14px; background: var(--negro); border-radius: 10px;
+  box-shadow: 0 0 0 3px var(--plata-oscuro), 0 10px 24px rgba(21,22,24,.28); }
+.pantalla { position: relative; width: 1000px; height: 563px; border-radius: 4px; overflow: hidden; background: #0B0C0E; cursor: pointer; }
+.pantalla iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* La cubierta absorbe los clics (nada lleva a YouTube) y tapa lo que YouTube pinta al pausar. */
+.cubierta {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background:
+    repeating-linear-gradient(180deg, rgba(0,0,0,.28) 0 2px, transparent 2px 5px),
+    radial-gradient(120% 100% at 30% 30%, #20252B 0, #0E1013 75%);
+  color: var(--lcd);
+  opacity: 1; transition: opacity .25s ease-out;
+}
+.pantalla[data-fase="reproduciendo"] .cubierta { opacity: 0; } /* invisible, pero sigue absorbiendo los clics */
+.cubierta-freq { font: 400 190px/.85 VT323, monospace; letter-spacing: .02em; }
+.cubierta-msg { font: 400 40px/1 VT323, monospace; letter-spacing: .14em; opacity: .85; }
+.pantalla[data-fase="error"] .cubierta-msg { color: #E8B84A; }
+
+/* ── Columna lateral ──────────────────────────────────── */
+/* Altura fija y teclas al pie: no se mueven al cambiar de canción, aunque el título ocupe 1 o 3 líneas. */
+.lateral { display: flex; flex-direction: column; gap: 20px; min-width: 0; height: 591px; }
+.lateral .ficha { min-height: 118px; }
+.lateral .teclas { margin-top: auto; }
+
+.lcd {
+  background: var(--lcd); color: var(--lcd-tinta); border-radius: 8px; padding: 14px 22px 12px;
+  box-shadow: inset 0 3px 10px rgba(0,0,0,.35), 0 0 0 4px var(--negro);
+}
+.lcd-fila { display: flex; justify-content: space-between; font: 400 24px/1 VT323, monospace; letter-spacing: .06em; }
+.lcd-freq { font: 400 118px/.85 VT323, monospace; margin-top: 4px; }
+.lcd-freq small { font-size: 36px; margin-left: 8px; }
+.lcd-banderas { display: flex; justify-content: space-between; margin-top: 10px; font: 400 21px/1 VT323, monospace; letter-spacing: .06em; }
+.lcd-banderas span { opacity: .8; padding: 1px 5px 0; border-radius: 2px; }   /* sin transición: fondo y texto cambian a la vez */
+.lcd-banderas span.on { opacity: 1; background: var(--lcd-tinta); color: var(--lcd); }   /* encendido = segmento invertido */
+.lcd-fila, .lcd-freq { transition: opacity .2s; }
+body[data-sonando="no"] .lcd-fila, body[data-sonando="no"] .lcd-freq { opacity: .75; }
+
+.ficha h2 {
+  font: 700 28px/1.12 Archivo; text-wrap: balance;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.canal { margin-top: 8px; font: 700 14px/1 Archivo; letter-spacing: .18em; text-transform: uppercase; color: var(--gris); }
+
+.tiempo { display: flex; justify-content: space-between; font: 700 17px/1 Archivo; }
+.tiempo .vivo { color: var(--mostaza-texto); }
+.barra { margin-top: 8px; height: 6px; background: var(--plata-oscuro); overflow: hidden; }
+.barra i { display: block; height: 100%; background: var(--rojo); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.barra.vivo i { transform: none; background: repeating-linear-gradient(90deg, var(--mostaza) 0 10px, var(--negro) 10px 20px); }
+
+/* Teclas de piano plateadas */
+.teclas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: var(--negro); padding: 6px; border-radius: 6px; }
+.tecla {
+  height: 62px; border-radius: 3px; display: grid; place-items: center;
+  background: linear-gradient(var(--plata-claro), var(--plata-oscuro));
+  box-shadow: inset 0 -5px 0 rgba(0,0,0,.18), 0 1px 0 rgba(255,255,255,.12);
+  transition: filter .12s;
+}
+.tecla:hover { filter: brightness(1.06); }
+.tecla:active, .tecla.hundida, .tecla[aria-pressed="true"] {
+  background: linear-gradient(var(--plata-oscuro), var(--plata));
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.35);
+}
+.tecla-texto { font: 800 14px/1 Archivo; letter-spacing: .12em; }
+.tecla[aria-pressed="true"] { color: var(--rojo-texto); }
+.tecla:focus-visible { outline-offset: -3px; }
+.ico { width: 30px; height: 30px; fill: var(--negro); }
+
+/* ── Panel Lista ──────────────────────────────────────── */
+.cuerpo { transition: opacity .15s ease-out; }
+.panel-abierto .cuerpo { opacity: 0; }   /* el video sigue sonando; solo se oculta */
+.panel-lista { position: absolute; left: calc(50% - 912px); width: 1824px; top: 122px; height: 591px; z-index: 20;
+  padding: 12px; background: var(--negro); border-radius: 12px; box-shadow: 0 18px 40px rgba(21,22,24,.4); }
+.panel-marco { height: 100%; background: linear-gradient(180deg, #F4F5F6, #DADDE1); border-radius: 6px; padding: 20px 28px; display: flex; flex-direction: column; }
+.panel-cab { display: flex; justify-content: space-between; font: 800 14px/1 Archivo; letter-spacing: .18em; margin-bottom: 14px; }
+.panel-cab span:last-child { font-weight: 700; color: var(--gris); letter-spacing: .08em; }
+.filas { list-style: none; padding: 0; flex: 1; display: grid; grid-template-rows: repeat(8, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 40px; }
+.fila { width: 100%; height: 100%; display: grid; grid-template-columns: 92px 1fr 84px; align-items: center; gap: 12px; text-align: left; padding: 0 12px; border-top: 1px solid rgba(21,22,24,.16); transition: background .12s; }
+.fila:hover { background: rgba(21,22,24,.06); }
+.fila .f { font: 800 26px/1 Archivo; }
+.fila .t { font: 700 16px/1.2 Archivo; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.fila .c { display: block; margin-top: 3px; font: 700 12px/1 Archivo; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); }
+.fila .d { text-align: right; font: 700 15px/1 Archivo; color: var(--gris); }
+.fila.on .f, .fila.on .t { color: var(--rojo-texto); }
+.fila.fallida { opacity: .45; }
+.fila.fallida .t { text-decoration: line-through; }
+
+/* ── Dial ─────────────────────────────────────────────── */
+.caja-dial { position: absolute; left: calc(50% - 912px); width: 1824px; bottom: 26px; height: 290px; padding: 12px; background: var(--negro); border-radius: 12px; }
+.dial { position: relative; height: 100%; border-radius: 6px; overflow: hidden; background: linear-gradient(180deg, #F4F5F6, #DADDE1); }
+.dial-cab { position: absolute; left: 24px; right: 24px; top: 14px; display: flex; justify-content: space-between; align-items: center; font: 800 14px/1 Archivo; letter-spacing: .18em; }
+.dial-cab .jp { font-size: 15px; letter-spacing: .1em; color: var(--rojo-texto); }
+.piloto { display: inline-block; width: 11px; height: 11px; margin-right: 9px; border-radius: 50%; vertical-align: -1px;
+  background: radial-gradient(circle at 35% 30%, #A0A5AB, #6E747B); box-shadow: 0 1px 2px rgba(0,0,0,.35); transition: background .2s; }
+body:not([data-sonando="no"]) .piloto { background: radial-gradient(circle at 35% 30%, #FF7A7F, var(--rojo) 60%); }
+
+.banda-caja { position: absolute; left: 40px; right: 72px; top: 40px; bottom: 12px; }   /* los rótulos inclinados salen hacia la derecha: el último necesita más aire */
+.flecha { width: 15px; height: 15px; fill: currentColor; vertical-align: -3px; }
+.flecha.izq { transform: scaleX(-1); }
+.banda { list-style: none; padding: 0; position: absolute; inset: 0; display: grid; grid-template-columns: repeat(var(--n, 16), 1fr); }
+.banda li { position: relative; }
+.est { position: absolute; inset: 0; width: 100%; }
+.est .nombre { position: absolute; left: 50%; margin-left: 8px; bottom: 92px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+  transform-origin: left bottom; transform: rotate(-38deg); white-space: nowrap; font: 700 16px/1.1 Archivo; color: #2A2D32; transition: color .15s; }
+.est .marca-esc { position: absolute; left: 50%; bottom: 46px; width: 2px; height: 40px; background: var(--negro); transform: translateX(-50%); }
+.est::after { content: ""; position: absolute; left: 0; right: 0; bottom: 46px; height: 14px;
+  background: repeating-linear-gradient(90deg, rgba(21,22,24,.5) 0 1px, transparent 1px 20%); }
+.est .mhz { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font: 800 21px/1 Archivo; }
+.est .dur { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); white-space: nowrap; font: 700 12px/1 Archivo; color: var(--gris); }
+.est .dur.vivo { color: var(--mostaza-texto); font-weight: 800; }
+.est:hover .nombre, .est.vista .nombre { color: var(--negro); }
+.est:hover .marca-esc, .est.vista .marca-esc { height: 46px; }
+.est.on .nombre { color: var(--rojo-texto); }
+.est.fallida .nombre { text-decoration: line-through; opacity: .45; }
+.est.fallida .marca-esc, .est.fallida .mhz, .est.fallida .dur { opacity: .4; }
+.est:focus-visible { outline-offset: -4px; }
+
+.aguja { position: absolute; top: -8px; bottom: 42px; left: 0; width: 4px; margin-left: -2px; background: var(--rojo);
+  cursor: grab; touch-action: none; transition: left .28s var(--ease); z-index: 3; }
+.aguja::before { content: ""; position: absolute; top: 0; bottom: 0; left: -14px; right: -14px; }
+.aguja.arrastrando { transition: none; cursor: grabbing; }
+.franja-pie { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: linear-gradient(90deg, var(--rojo) 0 33.3%, var(--mostaza) 33.3% 66.6%, var(--negro) 66.6%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .aguja, .cuerpo, .cubierta, .lcd-banderas span, .lcd-fila, .lcd-freq { transition: none; }
+}
