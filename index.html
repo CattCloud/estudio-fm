@@ -34,7 +34,26 @@
   <div class="franjas" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <main class="cuerpo">
-    <div class="parlante" aria-hidden="true"></div>
+    <div class="parlante">
+      <div class="perilla" id="perilla" role="slider" tabindex="0" aria-label="Volumen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-valuetext="80 %">
+        <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="perilla-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ECEEF0"/><stop offset="1" stop-color="#A9AFB6"/></linearGradient>
+          </defs>
+          <g id="perilla-marcas" stroke="#ECEEF0" stroke-width="2.5" stroke-linecap="round"></g>
+          <text x="24" y="184">0</text>
+          <text x="176" y="184" text-anchor="end">10</text>
+          <text id="perilla-valor" x="100" y="180" text-anchor="middle">VOL</text>
+          <g id="perilla-giro">
+            <circle cx="100" cy="100" r="64" fill="#151618"/>
+            <circle cx="100" cy="100" r="59" fill="none" stroke="#ECEEF0" stroke-opacity=".16" stroke-width="5" stroke-dasharray="2.2 4.2"/>
+            <circle cx="100" cy="100" r="50" fill="url(#perilla-tapa)"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke="#151618" stroke-opacity=".35" stroke-width="1.5"/>
+            <rect x="97" y="38" width="6" height="26" rx="3" fill="#D2232A"/>
+          </g>
+        </svg>
+      </div>
+    </div>
 
     <div class="ventana">
       <div class="pantalla" id="pantalla" data-fase="listo">
@@ -64,7 +83,7 @@
 
       <div class="avance">
         <div class="tiempo"><span id="t-actual">0:00</span><span id="t-total">0:00</span></div>
-        <div class="barra" id="barra" role="progressbar" aria-label="Avance de la canción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barra-llena"></i></div>
+        <div class="barra" id="barra" role="slider" tabindex="0" aria-label="Posición en la canción" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><i id="barra-llena"></i><b aria-hidden="true"></b></div>
       </div>
 
       <div class="teclas" role="group" aria-label="Controles">

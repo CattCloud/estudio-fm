@@ -10,6 +10,8 @@ colors:
   gris: "#4F555D"
   rojo: "#D2232A"
   rojo-texto: "#B01B22"
+  arena: "#D9B98B"
+  cafe: "#8A3F1B"
   mostaza: "#E3A92B"
   mostaza-texto: "#85580A"
   lcd: "#A9B98E"
@@ -124,20 +126,22 @@ Densidad media, todo con etiqueta propia: mayúsculas espaciadas para rótulos, 
 
 **Key Characteristics:**
 - Plástico plateado con estrías finas en la cabecera; negro como marco de todo lo que "se enchufa" (video, dial, lista, LCD).
-- Firma de marca: tres franjas rojo, mostaza y negro, en la cabecera y al pie del dial.
+- Firma de marca: tres franjas arena, café y negro, en la cabecera y al pie del dial.
 - Un único acento vivo: el rojo marca lo que suena, la aguja y el piloto.
 - Relieve físico (biseles, teclas hundibles) en lugar de sombras decorativas.
 
 ## Colors
 
-Plata cálida-fría de electrodoméstico, negro de marco, y tres colores de marca (rojo, mostaza, negro) más el verde apagado del LCD.
+Plata cálida-fría de electrodoméstico, negro de marco, y tres colores de marca (arena, café, negro) más el verde apagado del LCD.
 
 ### Primary
 - **Rojo Radiocasete** (#D2232A): la aguja, la barra de avance, el piloto encendido, el botón Lista abierto, la selección de texto y el foco. Marca "lo que suena".
 - **Rojo de Lectura** (#B01B22): el mismo rojo oscurecido para texto sobre plata (estación o fila activa, tecla activada, leyenda japonesa del dial).
 
 ### Secondary
-- **Mostaza Tostada** (#E3A92B): segunda franja de marca, el patrón rayado de la barra "en vivo".
+- **Arena** (#D9B98B): primera franja de marca, en la cabecera y al pie del dial.
+- **Café** (#8A3F1B): segunda franja de marca.
+- **Mostaza Tostada** (#E3A92B): ya no es franja de marca; queda solo en el patrón rayado de la barra "en vivo".
 - **Mostaza de Lectura** (#85580A): texto "EN VIVO" sobre plata.
 
 ### Neutral
@@ -203,7 +207,7 @@ Esquinas pequeñas, de plástico moldeado: 2px segmentos del LCD, 3px teclas, 4p
 ## Components
 
 ### Cabecera con franjas
-Marca en itálica 900, pastilla negra con ステレオ・ラジオ (3px de radio), y a la derecha el botón Lista. El rótulo del dial dice "ESTACIONES DE ESTUDIO · 16 ESTACIONES" (el número sale de la lista). Debajo, tres franjas de 6px: rojo, mostaza, negro. La franja se repite al pie del dial (6px, tercios exactos).
+Marca en itálica 900, pastilla negra con ステレオ・ラジオ (3px de radio), y a la derecha el botón Lista. El rótulo del dial dice "ESTACIONES DE ESTUDIO · 16 ESTACIONES" (el número sale de la lista). Debajo, tres franjas de 6px: arena, café, negro. La franja se repite al pie del dial (6px, tercios exactos).
 
 ### Botón Lista
 Negro con texto plata claro, etiqueta 800 15px con 0.16em de espaciado, 13px 20px. Hover #2B2E33 (.15s); abierto (`aria-expanded`) pasa a rojo.
@@ -231,6 +235,12 @@ Caja negra de 1824 × 591 sobre la fila principal, que se desvanece a opacidad 0
 
 ### Movimiento
 Aguja: `left` en 280 ms con `cubic-bezier(.16, 1, .3, 1)` (ease-out exponencial, sin rebote). Nace posicionada en su estación, sin barrido de arranque (transición en `none` en la primera colocación, restaurada después); mientras se arrastra, sin transición. Otras transiciones: cubierta 250 ms ease-out, cuerpo al abrir la Lista 150 ms ease-out, piloto 200 ms, hover de botón y tecla .12-.15 s. `prefers-reduced-motion: reduce` anula las transiciones de aguja, cuerpo, cubierta, banderas del LCD, fila superior y frecuencia (la aguja salta).
+
+### Perilla de volumen
+Sobre la rejilla del parlante, abajo y centrada (240px). Falda negra con muescas finas, tapa plateada en degradado vertical (#ECEEF0 → #A9AFB6) y una marca roja que va de la falda a la tapa. Recorrido de 270° (de -135° a +135°) con 11 marcas en plata sobre la rejilla, rótulos "0" y "10" en los extremos y "VOL n" al centro, en Archivo 800. Se gira arrastrando en vertical (160px = todo el recorrido), con la rueda o con ↑ ↓; el nivel se guarda en el navegador. Foco: anillo rojo de 3px.
+
+### Barra de posición
+La barra de avance es un deslizador: se pulsa o se arrastra para saltar a un punto de la canción. Pista gris plata de 6px, relleno rojo y una manija de fader (9 × 20px, plata con filo negro de 1.5px). La zona de agarre es 14px más alta que la pista. En vivo, la manija desaparece y la barra no responde.
 
 ### Estados de sistema (resumen)
 - **Sonando:** piloto rojo, LCD a plena opacidad, icono de pausa en la tecla, cubierta transparente, estación activa en rojo de lectura.

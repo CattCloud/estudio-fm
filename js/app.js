@@ -20,6 +20,7 @@ const el = {
   btnAnterior: $('btn-anterior'), btnPlay: $('btn-play'), usoPlay: $('uso-play'), btnSiguiente: $('btn-siguiente'),
   btnBuscar: $('btn-buscar'), btnExplorar: $('btn-explorar'), btnRepetir: $('btn-repetir'),
   btnLista: $('btn-lista'), lista: $('lista'), filas: $('filas'),
+  perilla: $('perilla'), perillaGiro: $('perilla-giro'), perillaMarcas: $('perilla-marcas'), perillaValor: $('perilla-valor'),
   banda: $('banda'), aguja: $('aguja'), estadoSr: $('estado-sr'),
 };
 
@@ -49,6 +50,8 @@ const e = {
   ultimoEstadoYT: null,
   temporizadores: { carga: 0, saludo: 0, saltar: 0, explorar: 0 },
   inicioExplorar: 0,
+  volumen: leerVolumen(),
+  arrastrandoBarra: false,
 };
 
 const depurar = (...a) => { if (DEPURAR) console.debug('[estudio-fm]', ...a); };
@@ -190,8 +193,11 @@ function pintarTiempo(forzar = false) {
   el.barra.classList.toggle('vivo', !!vivo);
   const total = e.duracion ?? c.duracion;
   const p = vivo || !total ? 0 : Math.min(1, e.tiempo / total);
-  el.barraLlena.style.setProperty('--p', p.toFixed(4));
-  el.barra.setAttribute('aria-valuenow', String(Math.round(p * 100)));
+  el.barra.style.setProperty('--p', p.toFixed(4));
+  el.barra.setAttribute('aria-valuemax', String(Math.round(total || 0)));
+  el.barra.setAttribute('aria-valuenow', String(Math.round(e.tiempo)));
+  el.barra.setAttribute('aria-valuetext', vivo ? 'En vivo' : `${formato(e.tiempo)} de ${formato(total)}`);
+  el.barra.setAttribute('aria-disabled', String(!!vivo));
 }
 
 function anunciar(texto) { el.estadoSr.textContent = texto; }
@@ -294,12 +300,13 @@ function enviar(mensaje) {
   try { e.iframe?.contentWindow?.postMessage(JSON.stringify(mensaje), ORIGEN_YT); } catch { /* el iframe aún no existe */ }
 }
 const ordenar = (func) => enviar({ event: 'command', func, args: '', id: e.idCarga, channel: 'widget' });
+const ordenarConArgs = (func, args) => enviar({ event: 'command', func, args, id: e.idCarga, channel: 'widget' });
 
 addEventListener('message', (ev) => {
   if (ev.origin !== ORIGEN_YT || !e.iframe || ev.source !== e.iframe.contentWindow) return;
   let d; try { d = typeof ev.data === 'string' ? JSON.parse(ev.data) : ev.data; } catch { return; }
   if (!d || d.id !== e.idCarga) return;
-  if (!e.conectado) { e.conectado = true; clearInterval(e.temporizadores.saludo); depurar('conectado', d.event); }
+  if (!e.conectado) { e.conectado = true; clearInterval(e.temporizadores.saludo); depurar('conectado', d.event); aplicarVolumen(); }
 
   switch (d.event) {
     case 'onStateChange': estadoYT(d.info); break;
@@ -307,7 +314,8 @@ addEventListener('message', (ev) => {
     case 'initialDelivery':
     case 'infoDelivery': {
       const info = d.info || {};
-      if (typeof info.currentTime === 'number') { e.tiempo = info.currentTime; pintarTiempo(); }
+      if (DEPURAR && typeof info.volume === 'number') depurar('volumen del reproductor', info.volume);
+      if (typeof info.currentTime === 'number' && !e.arrastrandoBarra) { e.tiempo = info.currentTime; pintarTiempo(); }
       if (typeof info.duration === 'number' && info.duration > 0 && !cancion().envivo) { e.duracion = info.duration; }
       if (typeof info.playerState === 'number') estadoYT(info.playerState);
       break;
@@ -324,6 +332,7 @@ function estadoYT(estado) {
     clearTimeout(e.temporizadores.carga);
     e.fallosSeguidos = 0;
     olvidarBloqueo(cancion().id);
+    aplicarVolumen();
     e.fase = 'reproduciendo'; e.mensaje = '';
     pintar();
     if (e.explorar) programarExplorar();
@@ -450,6 +459,94 @@ function abrirLista(abrir) {
   else el.btnLista.focus({ preventScroll: true });
 }
 
+// ── Volumen: perilla ────────────────────────────────────────────────────────
+
+function leerVolumen() {
+  try { const v = localStorage.getItem('estudiofm.volumen'); return v === null ? 80 : Math.min(100, Math.max(0, Number(v) || 0)); } catch { return 80; }
+}
+
+function pintarVolumen() {
+  el.perillaGiro.setAttribute('transform', `rotate(${(-135 + 270 * (e.volumen / 100)).toFixed(1)} 100 100)`);
+  el.perillaValor.textContent = `VOL ${e.volumen}`;
+  el.perilla.setAttribute('aria-valuenow', String(e.volumen));
+  el.perilla.setAttribute('aria-valuetext', `${e.volumen} %`);
+}
+
+function aplicarVolumen() { if (e.iframe && e.conectado) ordenarConArgs('setVolume', [e.volumen]); }
+
+function ponerVolumen(v) {
+  e.volumen = Math.min(100, Math.max(0, Math.round(v)));
+  pintarVolumen();
+  aplicarVolumen();
+  try { localStorage.setItem('estudiofm.volumen', String(e.volumen)); } catch { /* sin almacenamiento */ }
+}
+const cambiarVolumen = (delta) => ponerVolumen(e.volumen + delta);
+
+function construirPerilla() {
+  const NS = 'http://www.w3.org/2000/svg';
+  for (let k = 0; k <= 10; k++) {
+    const a = ((-135 + 27 * k) * Math.PI) / 180;
+    const r2 = 74 + (k % 5 === 0 ? 15 : 9);
+    const l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', (100 + 74 * Math.sin(a)).toFixed(1)); l.setAttribute('y1', (100 - 74 * Math.cos(a)).toFixed(1));
+    l.setAttribute('x2', (100 + r2 * Math.sin(a)).toFixed(1)); l.setAttribute('y2', (100 - r2 * Math.cos(a)).toFixed(1));
+    el.perillaMarcas.append(l);
+  }
+}
+
+function enlazarPerilla() {
+  let arrastre = null;
+  el.perilla.addEventListener('pointerdown', (ev) => {
+    arrastre = { y: ev.clientY, v: e.volumen };
+    el.perilla.setPointerCapture(ev.pointerId); el.perilla.focus({ preventScroll: true }); ev.preventDefault();
+  });
+  el.perilla.addEventListener('pointermove', (ev) => {
+    if (!arrastre) return;
+    const escala = parseFloat(el.escena.style.getPropertyValue('--escala')) || 1;
+    ponerVolumen(arrastre.v + ((arrastre.y - ev.clientY) / escala) * (100 / 160));   // 160 px de arrastre = todo el recorrido
+  });
+  el.perilla.addEventListener('pointerup', () => { arrastre = null; });
+  el.perilla.addEventListener('pointercancel', () => { arrastre = null; });
+  el.perilla.addEventListener('wheel', (ev) => { ev.preventDefault(); cambiarVolumen(ev.deltaY < 0 ? +5 : -5); }, { passive: false });
+}
+
+// ── Barra de posición: moverse por la canción ───────────────────────────────
+
+function totalActual() { const c = cancion(); return c && !c.envivo ? (e.duracion ?? c.duracion) : null; }
+
+function buscarEn(segundos) {
+  const total = totalActual();
+  if (!total || !e.iframe) return;
+  const s = Math.min(Math.max(0, segundos), total - 1);
+  e.tiempo = s;
+  pintarTiempo(true);
+  ordenarConArgs('seekTo', [s, true]);
+}
+
+function enlazarBarra() {
+  const fraccion = (clientX) => { const r = el.barra.getBoundingClientRect(); return Math.min(Math.max((clientX - r.left) / r.width, 0), 1); };
+  el.barra.addEventListener('pointerdown', (ev) => {
+    if (!totalActual() || !e.iframe) return;
+    e.arrastrandoBarra = true;
+    el.barra.setPointerCapture(ev.pointerId); el.barra.focus({ preventScroll: true });
+    e.tiempo = fraccion(ev.clientX) * totalActual(); pintarTiempo(true); ev.preventDefault();
+  });
+  el.barra.addEventListener('pointermove', (ev) => {
+    if (!e.arrastrandoBarra) return;
+    e.tiempo = fraccion(ev.clientX) * totalActual(); pintarTiempo(true);
+  });
+  el.barra.addEventListener('pointerup', (ev) => {
+    if (!e.arrastrandoBarra) return;
+    e.arrastrandoBarra = false;
+    buscarEn(fraccion(ev.clientX) * totalActual());
+  });
+  el.barra.addEventListener('pointercancel', () => { e.arrastrandoBarra = false; });
+  el.barra.addEventListener('keydown', (ev) => {
+    if (ev.key === 'ArrowLeft') { ev.preventDefault(); buscarEn(e.tiempo - 10); }
+    else if (ev.key === 'ArrowRight') { ev.preventDefault(); buscarEn(e.tiempo + 10); }
+  });
+}
+
 // ── Aguja arrastrable ───────────────────────────────────────────────────────
 
 function enlazarAguja() {
@@ -509,8 +606,11 @@ function enlazar() {
 
   document.addEventListener('keydown', (ev) => {
     if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
-    if (ev.key === 'ArrowLeft') { ev.preventDefault(); sintonizarVecina(-1); }
-    else if (ev.key === 'ArrowRight') { ev.preventDefault(); sintonizarVecina(+1); }
+    const enBarra = ev.target === el.barra;   // con la barra enfocada, ← → mueven la canción y no la estación
+    if (ev.key === 'ArrowLeft' && !enBarra) { ev.preventDefault(); sintonizarVecina(-1); }
+    else if (ev.key === 'ArrowRight' && !enBarra) { ev.preventDefault(); sintonizarVecina(+1); }
+    else if (ev.key === 'ArrowUp') { ev.preventDefault(); cambiarVolumen(+5); }
+    else if (ev.key === 'ArrowDown') { ev.preventDefault(); cambiarVolumen(-5); }
     else if (ev.key === ' ' && !ev.target.closest('button')) { ev.preventDefault(); alternar(); }
     else if (ev.key === 'Escape' && !el.lista.hidden) abrirLista(false);
   });
@@ -519,6 +619,8 @@ function enlazar() {
   // Al volver a la pestaña lo primero que debe verse es lo que suena: la Lista no se queda abierta.
   document.addEventListener('visibilitychange', () => { if (document.hidden && !el.lista.hidden) abrirLista(false); });
   enlazarAguja();
+  enlazarPerilla();
+  enlazarBarra();
 
   if ('mediaSession' in navigator) {
     const acciones = { play: reproducir, pause: pausar, nexttrack: siguiente, previoustrack: anterior };
@@ -542,6 +644,8 @@ async function iniciar() {
     return;
   }
   cargarBloqueos();
+  construirPerilla();
+  pintarVolumen();
   construirDial();
   construirLista();
   el.cuenta.textContent = String(n());
