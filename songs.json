@@ -1,8 +1,16 @@
 {
-  "actualizado": "2026-11-13T16:28:47.772Z",
+  "actualizado": "2026-11-13T16:58:11.625Z",
   "grupos": [
     {
       "nombre": "General",
+      "paso": 1.2
+    },
+    {
+      "nombre": "Yu-Gi-Oh",
+      "paso": 0.9
+    },
+    {
+      "nombre": "Lofi",
       "paso": 1.2
     }
   ],
@@ -165,6 +173,326 @@
       "corto": "Yujiro Hanma",
       "canal": "bsprod",
       "duracion": 530,
+      "envivo": false
+    },
+    {
+      "id": "jBWTyy7WwdA",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 88.1,
+      "titulo": "Paradox Theme - Yu-Gi-Oh! Duel Links / 10 minutes",
+      "corto": "Paradox Theme",
+      "canal": "Second Blood",
+      "duracion": 610,
+      "envivo": false
+    },
+    {
+      "id": "jGmbGYOc2CQ",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 89,
+      "titulo": "HQ I Yubel Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
+      "corto": "HQ I Yubel Theme",
+      "canal": "Duel Links Soundtracks!",
+      "duracion": 639,
+      "envivo": false
+    },
+    {
+      "id": "3VSucXMBER8",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 89.9,
+      "titulo": "Yuto Theme - Yu-Gi-Oh! Duel Links / 10 minutes",
+      "corto": "Yuto Theme",
+      "canal": "Second Blood",
+      "duracion": 659,
+      "envivo": false
+    },
+    {
+      "id": "3Epv_PHM3Vg",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 90.8,
+      "titulo": "Soulburner Theme | Yu-Gi-Oh! Duel Links 遊戯王 デュエルリンクス",
+      "corto": "Soulburner Theme",
+      "canal": "ガンセック GunSec",
+      "duracion": 935,
+      "envivo": false
+    },
+    {
+      "id": "rii-gOJuKLg",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 91.7,
+      "titulo": "HQ I Reiji Akaba (Declan Akaba) - Arc-V Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
+      "corto": "HQ I Reiji Akaba",
+      "canal": "Duel Links Soundtracks!",
+      "duracion": 687,
+      "envivo": false
+    },
+    {
+      "id": "WVy3TnzWGh0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 92.6,
+      "titulo": "HQ I Gong Strong - Arc-V Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
+      "corto": "HQ I Gong Strong",
+      "canal": "Duel Links Soundtracks!",
+      "duracion": 625,
+      "envivo": false
+    },
+    {
+      "id": "qqVeb_i7mSQ",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 93.5,
+      "titulo": "HQ | Summon Ace Card Theme ARC V Extended (Soundtrack) | Yu-Gi-Oh! Duel Links!",
+      "corto": "HQ",
+      "canal": "SirBingChilling YGO",
+      "duracion": 1189,
+      "envivo": false
+    },
+    {
+      "id": "ojTRy8VzJDY",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 94.4,
+      "titulo": "ARC-V Ace Monster Theme",
+      "corto": "ARC-V Ace Monster Theme",
+      "canal": "SimpHater",
+      "duracion": 205,
+      "envivo": false
+    },
+    {
+      "id": "TyAK4VXeyF0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 95.3,
+      "titulo": "HQ I Akiza Izinski Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
+      "corto": "HQ I Akiza Izinski Theme",
+      "canal": "Duel Links Soundtracks!",
+      "duracion": 616,
+      "envivo": false
+    },
+    {
+      "id": "fkxsGozk9FE",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 96.2,
+      "titulo": "HQ I Kalin Kessler Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
+      "corto": "HQ I Kalin Kessler Theme",
+      "canal": "Duel Links Soundtracks!",
+      "duracion": 665,
+      "envivo": false
+    },
+    {
+      "id": "R_l1hEZg0_0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 97.1,
+      "titulo": "Duel of Rebellion -反逆のデュエル - [Perfect Loop]",
+      "corto": "Duel of Rebellion -反逆のデュエル",
+      "canal": "Ken Matsumoto",
+      "duracion": 843,
+      "envivo": false
+    },
+    {
+      "id": "wIGx_IQ6MRI",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 98,
+      "titulo": "Yuto's Passionate Soul x Duel of Rebellion",
+      "corto": "Yuto's Passionate Soul x…",
+      "canal": "Ohrot",
+      "duracion": 348,
+      "envivo": false
+    },
+    {
+      "id": "zkJP1jlGeJw",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 98.9,
+      "titulo": "【遊戯王GX】Yu Gi Oh! GX Sad Duel 【悲しいデュエル】Supreme King Theme EPIC Guitar Cover METAL/ROCK",
+      "corto": "【遊戯王GX】Yu Gi Oh! GX Sad…",
+      "canal": "B.O.D GUITAR",
+      "duracion": 160,
+      "envivo": false
+    },
+    {
+      "id": "ntAqcVR-2-g",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 99.8,
+      "titulo": "【遊戯王5D's】Yu-Gi-Oh! 5D's Jack Battle Theme 【ジャックバトル】 Guitar Cover Metal/Rock",
+      "corto": "【遊戯王5D's】Yu-Gi-Oh! 5D's…",
+      "canal": "B.O.D GUITAR",
+      "duracion": 206,
+      "envivo": false
+    },
+    {
+      "id": "4jQrdcKt7T4",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 100.7,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - The Complete Collection",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 3169,
+      "envivo": false
+    },
+    {
+      "id": "jjMYR2TWA18",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 101.6,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #1",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 414,
+      "envivo": false
+    },
+    {
+      "id": "KqA2i5VXcMo",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 102.5,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #2",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 396,
+      "envivo": false
+    },
+    {
+      "id": "1P4WvcnOlC8",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 103.4,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #3",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 388,
+      "envivo": false
+    },
+    {
+      "id": "Vk38XLBB1lY",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 104.3,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #4",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 373,
+      "envivo": false
+    },
+    {
+      "id": "T9nwlyN3Gw0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 105.2,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #5",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 393,
+      "envivo": false
+    },
+    {
+      "id": "RIGlKCKp5Iw",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 106.1,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #12",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 332,
+      "envivo": false
+    },
+    {
+      "id": "Tm12rEFddH8",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 107,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #15",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 306,
+      "envivo": false
+    },
+    {
+      "id": "IOnepUUfboc",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 107.9,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #16",
+      "corto": "Yu-Gi-Oh! Master Duel BGM",
+      "canal": "Entertainment Duelist",
+      "duracion": 295,
+      "envivo": false
+    },
+    {
+      "id": "hvIhwo6I6gg",
+      "grupo": "Lofi",
+      "freq": 88.1,
+      "titulo": "Homecoming",
+      "corto": "Homecoming",
+      "canal": "Simon Groß - Topic",
+      "duracion": 231,
+      "envivo": false
+    },
+    {
+      "id": "fIGyZGRcQC0",
+      "grupo": "Lofi",
+      "freq": 89.3,
+      "titulo": "Ascension",
+      "corto": "Ascension",
+      "canal": "Prithvi - Topic",
+      "duracion": 166,
+      "envivo": false
+    },
+    {
+      "id": "vMYNLVyqQNw",
+      "grupo": "Lofi",
+      "freq": 90.5,
+      "titulo": "Tibeauthetraveler & So.Lo - Goodnight (12 Am. Study Session)",
+      "corto": "Tibeauthetraveler & So.Lo",
+      "canal": "Tibeauthetraveler",
+      "duracion": 176,
+      "envivo": false
+    },
+    {
+      "id": "mfIdynH52fk",
+      "grupo": "Lofi",
+      "freq": 91.7,
+      "titulo": "Moira (Loafy Building & Tibeauthetraveler) from Aquilla w/ Lofi Girl [lofi hip-hop to study to]",
+      "corto": "Moira",
+      "canal": "Loafy Building Music",
+      "duracion": 182,
+      "envivo": false
+    },
+    {
+      "id": "0pl7bxl0dDc",
+      "grupo": "Lofi",
+      "freq": 92.9,
+      "titulo": "Wonderland",
+      "corto": "Wonderland",
+      "canal": "Release - Topic",
+      "duracion": 184,
+      "envivo": false
+    },
+    {
+      "id": "M9ufLiVImsc",
+      "grupo": "Lofi",
+      "freq": 94.1,
+      "titulo": "Valentine",
+      "corto": "Valentine",
+      "canal": "Kupla - Topic",
+      "duracion": 232,
+      "envivo": false
+    },
+    {
+      "id": "lbpCmN1IqGk",
+      "grupo": "Lofi",
+      "freq": 95.3,
+      "titulo": "lovers walk. 💝 romantic lofi mix",
+      "corto": "lovers walk. 💝 romantic…",
+      "canal": "The Jazz Hop Café",
+      "duracion": 8163,
+      "envivo": false
+    },
+    {
+      "id": "NH8uI4EJ0bo",
+      "grupo": "Lofi",
+      "freq": 96.5,
+      "titulo": "romantic lofi mix 💖 3 hours of background music for valentine’s day",
+      "corto": "romantic lofi mix 💖 3…",
+      "canal": "Lofi Girl",
+      "duracion": 10800,
+      "envivo": false
+    },
+    {
+      "id": "l98w9OSKVNA",
+      "grupo": "Lofi",
+      "freq": 97.7,
+      "titulo": "12 A.M Study Session 📚 [lofi hip hop]",
+      "corto": "12 A.M Study Session 📚",
+      "canal": "Lofi Girl",
+      "duracion": 3448,
       "envivo": false
     }
   ]
