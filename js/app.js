@@ -44,7 +44,9 @@ const e = {
   tiempo: 0,
   duracion: null,
   fallosSeguidos: 0,
-  idCarga: 0,
+  idCarga: 0,               // cuenta cada carga de canción: invalida los temporizadores de la anterior
+  idFrame: 0,               // identifica al iframe vivo en el protocolo con YouTube; no cambia mientras el iframe dure
+  cambiandoVideo: false,    // true entre pedirle otro video al reproductor vivo y que empiece a sonar
   iframe: null,
   conectado: false,         // ¿ya respondió el reproductor de esta carga?
   ultimoEstadoYT: null,
@@ -255,14 +257,39 @@ function descargar() {
   clearTimeout(e.temporizadores.carga); clearInterval(e.temporizadores.saludo);
   e.idCarga++;
   e.conectado = false;
+  e.cambiandoVideo = false;
   e.ultimoEstadoYT = null;
   if (e.iframe) { e.iframe.remove(); e.iframe = null; }
 }
 
+// Si el reproductor ya está vivo se le cambia el video en lugar de crear otro iframe.
+// Un iframe nuevo en una pestaña oculta no arranca solo; el que ya venía sonando sí sigue con la siguiente canción.
+function cambiarVideo(c) {
+  clearTimeout(e.temporizadores.carga);
+  const id = ++e.idCarga;
+  if (e.ultimoEstadoYT !== 0) e.ultimoEstadoYT = null;   // un "terminó" repetido del video anterior no cuenta como canción nueva
+  e.cambiandoVideo = true;                                // al cambiar de video el reproductor pasa por "pausa" un instante: no es una pausa real
+  e.fase = 'cargando';
+  pintar();
+  ordenarConArgs('loadVideoById', [c.id]);
+  esperarCarga(id);
+}
+
+function esperarCarga(id) {
+  e.temporizadores.carga = setTimeout(() => {
+    if (id !== e.idCarga || e.fase !== 'cargando') return;
+    e.cambiandoVideo = false;
+    if (e.conectado) { e.fase = 'pausa'; e.mensaje = 'PULSA PLAY'; pintar(); }   // el navegador no dejó arrancar solo
+    else senalPerdida('no respondió');
+  }, ESPERA_CARGA_MS);
+}
+
 function cargar(i) {
-  descargar();
   const c = e.canciones[i];
+  if (e.iframe && e.conectado) return cambiarVideo(c);
+  descargar();
   const id = e.idCarga;
+  e.idFrame = id;
   e.fase = 'cargando';
   pintar();
 
@@ -288,24 +315,19 @@ function cargar(i) {
   f.src = `${ORIGEN_YT}/embed/${c.id}?${parametros}`;
   e.iframe = f;
   el.pantalla.prepend(f);
-
-  e.temporizadores.carga = setTimeout(() => {
-    if (id !== e.idCarga || e.fase !== 'cargando') return;
-    if (e.conectado) { e.fase = 'pausa'; e.mensaje = 'PULSA PLAY'; pintar(); }   // el navegador no dejó arrancar solo
-    else senalPerdida('no respondió');
-  }, ESPERA_CARGA_MS);
+  esperarCarga(id);
 }
 
 function enviar(mensaje) {
   try { e.iframe?.contentWindow?.postMessage(JSON.stringify(mensaje), ORIGEN_YT); } catch { /* el iframe aún no existe */ }
 }
-const ordenar = (func) => enviar({ event: 'command', func, args: '', id: e.idCarga, channel: 'widget' });
-const ordenarConArgs = (func, args) => enviar({ event: 'command', func, args, id: e.idCarga, channel: 'widget' });
+const ordenar = (func) => enviar({ event: 'command', func, args: '', id: e.idFrame, channel: 'widget' });
+const ordenarConArgs = (func, args) => enviar({ event: 'command', func, args, id: e.idFrame, channel: 'widget' });
 
 addEventListener('message', (ev) => {
   if (ev.origin !== ORIGEN_YT || !e.iframe || ev.source !== e.iframe.contentWindow) return;
   let d; try { d = typeof ev.data === 'string' ? JSON.parse(ev.data) : ev.data; } catch { return; }
-  if (!d || d.id !== e.idCarga) return;
+  if (!d || d.id !== e.idFrame) return;
   if (!e.conectado) { e.conectado = true; clearInterval(e.temporizadores.saludo); depurar('conectado', d.event); aplicarVolumen(); }
 
   switch (d.event) {
@@ -315,6 +337,13 @@ addEventListener('message', (ev) => {
     case 'infoDelivery': {
       const info = d.info || {};
       if (DEPURAR && typeof info.volume === 'number') depurar('volumen del reproductor', info.volume);
+      // El reproductor vivo no manda onError cuando un video no se puede incrustar: lo dice en videoData.errorCode.
+      const errorVideo = info.videoData?.errorCode;
+      if (errorVideo && info.videoData.video_id === cancion()?.id && e.fase !== 'error') {
+        recordarBloqueo(cancion().id);
+        senalPerdida(`errorCode ${errorVideo}`);
+        break;
+      }
       if (typeof info.currentTime === 'number' && !e.arrastrandoBarra) { e.tiempo = info.currentTime; pintarTiempo(); }
       if (typeof info.duration === 'number' && info.duration > 0 && !cancion().envivo) { e.duracion = info.duration; }
       if (typeof info.playerState === 'number') estadoYT(info.playerState);
@@ -333,10 +362,12 @@ function estadoYT(estado) {
     e.fallosSeguidos = 0;
     olvidarBloqueo(cancion().id);
     aplicarVolumen();
+    e.cambiandoVideo = false;
     e.fase = 'reproduciendo'; e.mensaje = '';
     pintar();
     if (e.explorar) programarExplorar();
   } else if (estado === 2) {                  // pausa
+    if (e.cambiandoVideo) return;
     clearTimeout(e.temporizadores.carga);
     if (e.fase !== 'pausa') { e.fase = 'pausa'; e.mensaje = ''; pintar(); }
     clearTimeout(e.temporizadores.explorar);
@@ -348,6 +379,7 @@ function estadoYT(estado) {
 function errorYT(codigo) {
   depurar('error', codigo);
   if (codigo === 153) return mostrarFalloGlobal('ERROR 153', 'YouTube no recibió la dirección de la página. Abre Estudio FM con un servidor local o desde GitHub Pages.');
+  if (e.fase === 'error') return;   // ya se marcó por videoData.errorCode
   if ([100, 101, 150].includes(codigo)) recordarBloqueo(cancion().id);   // no incrustable o ya no existe: no cambia solo
   senalPerdida(`error ${codigo}`);
 }
@@ -383,7 +415,9 @@ function mostrarFalloGlobal(mensaje, detalle) {
 
 function senalPerdida(motivo) {
   depurar('sin señal', cancion()?.corto, motivo);
-  descargar();
+  e.cambiandoVideo = false;
+  if (e.conectado) { clearTimeout(e.temporizadores.carga); e.idCarga++; }   // el reproductor sigue vivo: la cubierta tapa su pantalla de error
+  else descargar();
   e.fallidas.add(e.actual);
   e.fallosSeguidos++;
   e.fase = 'error'; e.mensaje = 'SIN SEÑAL';
