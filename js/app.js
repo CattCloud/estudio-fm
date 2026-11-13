@@ -635,7 +635,7 @@ function colocarCarrusel() {
     b.classList.toggle('fallida', e.fallidas.has(s.id));
     b.innerHTML = '<span class="f"></span><span class="t"></span><span class="d"></span>';
     b.querySelector('.f').textContent = freqTexto(s);
-    b.querySelector('.t').textContent = s.titulo;
+    b.querySelector('.t').textContent = s.corto;   // el mismo nombre del dial; el título completo sale a la derecha al sintonizar
     b.querySelector('.d').textContent = duracionTexto(s);
     li.append(b);
     return li;
