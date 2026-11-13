@@ -49,62 +49,43 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 /* ── Escena ───────────────────────────────────────────── */
 .escena {
   position: absolute; left: 50%; top: 50%;
-  width: var(--ancho, 1920px); height: 1050px;   /* más ancha que 1920 si la ventana es más ancha que la escena: cabecera y franjas sangran completas */
+  width: var(--ancho, 1920px); height: 1050px;   /* más ancha que 1920 si la ventana es más ancha que la escena: las franjas sangran completas */
   transform: translate(-50%, -50%) scale(var(--escala, 1));
 }
 
-/* ── Cabecera ─────────────────────────────────────────── */
-.cabecera {
-  height: 78px; padding: 0 calc((100% - 1824px) / 2);
-  display: flex; align-items: center; justify-content: space-between;
-  background: repeating-linear-gradient(180deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px);
-}
-.marca { display: flex; align-items: center; gap: 20px; }
-.marca h1 { font: italic 900 40px/1 Archivo; letter-spacing: -.01em; }
-.jp { font: 700 17px/1 "M PLUS 1p", sans-serif; }
-.marca .jp { background: var(--negro); color: var(--plata-claro); padding: 7px 10px; border-radius: 3px; }
-.boton-lista {
-  font: 800 15px/1 Archivo; letter-spacing: .16em;
-  padding: 13px 20px; background: var(--negro); color: var(--plata-claro); border-radius: 4px;
-  transition: background .15s;
-}
-.boton-lista:hover { background: #2B2E33; }
-.boton-lista[aria-expanded="true"] { background: var(--rojo); }
-
+/* Las franjas son el canto superior del aparato: no hay cabecera. */
 .franjas { height: 18px; display: grid; grid-template-rows: 1fr 1fr 1fr; }
 .franjas i:nth-child(1) { background: var(--arena); }
 .franjas i:nth-child(2) { background: var(--cafe); }
 .franjas i:nth-child(3) { background: var(--negro); }
+.jp { font: 700 17px/1 "M PLUS 1p", sans-serif; }
 
-/* ── Cuerpo ───────────────────────────────────────────── */
+/* ── Cuerpo: pletina y volumen · video · lo que suena ─── */
 .cuerpo {
-  width: 1920px; margin-inline: auto;
-  display: grid; grid-template-columns: 300px 1028px 1fr; gap: 36px;
-  padding: 26px 48px 0; align-items: start;
+  width: 1920px; margin-inline: auto; height: 654px;
+  display: grid; grid-template-columns: 400px 960px 1fr; gap: 36px;
+  padding: 30px 48px 0; align-items: start;
 }
-.izquierda { display: flex; flex-direction: column; gap: 16px; height: 591px; }
-.parlante {
-  flex: 1; min-height: 0; border-radius: 14px;
-  background:
-    radial-gradient(circle, #2A2C30 3px, transparent 3.6px) 0 0 / 12px 12px,
-    linear-gradient(#5A5F66, #3A3E44);
-  box-shadow: inset 0 0 0 3px var(--plata-oscuro), inset 0 0 0 8px #2A2C30;
-}
+.izquierda { display: flex; flex-direction: column; gap: 16px; height: 606px; }
 
-/* Módulo de volumen: panel propio bajo el parlante, con el mismo marco negro y cara clara del dial */
-.volumen { flex: none; height: 232px; margin: 10px; display: grid; place-items: center; border-radius: 6px;
+/* Módulo de volumen: panel propio bajo la pletina, con el mismo marco negro y cara clara del dial */
+.volumen { flex: none; height: 178px; margin: 10px; display: grid; place-items: center; border-radius: 6px;
   background: linear-gradient(180deg, #F4F5F6, #DADDE1); box-shadow: 0 0 0 10px var(--negro); }
-.perilla { width: 218px; height: 218px; border-radius: 50%; color: var(--negro);
+.perilla { width: 170px; height: 170px; border-radius: 50%; color: var(--negro);
   cursor: ns-resize; touch-action: none; }
 .perilla svg { display: block; width: 100%; height: 100%; }
 .perilla text { font: 800 14px Archivo, sans-serif; letter-spacing: .12em; fill: currentColor; }
 .perilla:focus-visible { outline-offset: 2px; }
 
-/* Video: ventana negra con pantalla 16:9 */
-.ventana { width: 1028px; height: 591px; padding: 14px; background: var(--negro); border-radius: 10px;
+/* Columna central: ventana de video y placa de marca debajo */
+.centro { display: flex; flex-direction: column; height: 606px; }
+.ventana { width: 960px; height: 552px; padding: 14px; background: var(--negro); border-radius: 10px;
   box-shadow: 0 0 0 3px var(--plata-oscuro), 0 10px 24px rgba(21,22,24,.28); }
-.pantalla { position: relative; width: 1000px; height: 563px; border-radius: 4px; overflow: hidden; background: #0B0C0E; cursor: pointer; }
+.pantalla { position: relative; width: 932px; height: 524px; border-radius: 4px; overflow: hidden; background: #0B0C0E; cursor: pointer; }
 .pantalla iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.placa { flex: 1; display: flex; align-items: center; justify-content: center; gap: 18px; }
+.placa h1 { font: italic 900 34px/1 Archivo; letter-spacing: -.01em; }
+.placa .jp { background: var(--negro); color: var(--plata-claro); padding: 6px 9px; border-radius: 3px; font-size: 15px; }
 
 /* La cubierta absorbe los clics (nada lleva a YouTube) y tapa lo que YouTube pinta al pausar. */
 .cubierta {
@@ -117,13 +98,13 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   opacity: 1; transition: opacity .25s ease-out;
 }
 .pantalla[data-fase="reproduciendo"] .cubierta { opacity: 0; } /* invisible, pero sigue absorbiendo los clics */
-.cubierta-freq { font: 400 190px/.85 VT323, monospace; letter-spacing: .02em; }
+.cubierta-freq { font: 400 176px/.85 VT323, monospace; letter-spacing: .02em; }
 .cubierta-msg { font: 400 40px/1 VT323, monospace; letter-spacing: .14em; opacity: .85; }
 .pantalla[data-fase="error"] .cubierta-msg { color: #E8B84A; }
 
 /* ── Columna lateral ──────────────────────────────────── */
 /* Altura fija y teclas al pie: no se mueven al cambiar de canción, aunque el título ocupe 1 o 3 líneas. */
-.lateral { display: flex; flex-direction: column; gap: 20px; min-width: 0; height: 591px; }
+.lateral { display: flex; flex-direction: column; gap: 20px; min-width: 0; height: 606px; }
 .lateral .ficha { min-height: 118px; }
 .lateral .teclas { margin-top: auto; }
 
@@ -177,47 +158,133 @@ body[data-sonando="no"] .lcd-fila, body[data-sonando="no"] .lcd-freq { opacity: 
 .tecla:focus-visible { outline-offset: -3px; }
 .ico { width: 30px; height: 30px; fill: var(--negro); }
 
-/* ── Panel Lista ──────────────────────────────────────── */
-.cuerpo { transition: opacity .15s ease-out; }
-.panel-abierto .cuerpo { opacity: 0; }   /* el video sigue sonando; solo se oculta */
-.panel-lista { position: absolute; left: calc(50% - 912px); width: 1824px; top: 122px; height: 591px; z-index: 20;
-  padding: 12px; background: var(--negro); border-radius: 12px; box-shadow: 0 18px 40px rgba(21,22,24,.4); }
-.panel-marco { height: 100%; background: linear-gradient(180deg, #F4F5F6, #DADDE1); border-radius: 6px; padding: 20px 28px; display: flex; flex-direction: column; }
-.panel-cab { display: flex; justify-content: space-between; font: 800 14px/1 Archivo; letter-spacing: .18em; margin-bottom: 14px; }
-.panel-cab span:last-child { font-weight: 700; color: var(--gris); letter-spacing: .08em; }
-.filas { list-style: none; padding: 0; flex: 1; display: grid; grid-template-rows: repeat(8, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 40px; }
-.fila { width: 100%; height: 100%; display: grid; grid-template-columns: 92px 1fr 84px; align-items: center; gap: 12px; text-align: left; padding: 0 12px; border-top: 1px solid rgba(21,22,24,.16); transition: background .12s; }
-.fila:hover { background: rgba(21,22,24,.06); }
-.fila .f { font: 800 26px/1 Archivo; }
-.fila .t { font: 700 16px/1.2 Archivo; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.fila .c { display: block; margin-top: 3px; font: 700 12px/1 Archivo; letter-spacing: .14em; text-transform: uppercase; color: var(--gris); }
-.fila .d { text-align: right; font: 700 15px/1 Archivo; color: var(--gris); }
-.fila.on .f, .fila.on .t { color: var(--rojo-texto); }
-.fila.fallida { opacity: .45; }
-.fila.fallida .t { text-decoration: line-through; }
+/* ── Pletina: el casete puesto, visible por la tapa ahumada ── */
+.pletina { flex: 1; min-height: 0; margin: 10px; border-radius: 6px; padding: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+  background: linear-gradient(180deg, #F4F5F6, #DADDE1); box-shadow: 0 0 0 10px var(--negro); }
+.pletina-cab { display: flex; justify-content: space-between; align-items: center; font: 800 13px/1 Archivo; letter-spacing: .18em; }
+.pletina-cab span:last-child { color: var(--gris); }
+.puerta { position: relative; flex: 1; min-height: 0; perspective: 1400px; perspective-origin: 50% 0; }
+.foso { position: absolute; inset: 0; border-radius: 6px; background: #0E0F11; overflow: hidden;
+  box-shadow: inset 0 4px 12px rgba(0,0,0,.7), 0 0 0 3px var(--plata-oscuro); }
+.foso svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tapa { position: absolute; inset: 0; border-radius: 6px; transform-origin: 50% 100%;
+  transition: transform .42s var(--ease); display: grid; place-items: center; }
+.tapa::after { /* acrílico ahumado con su reflejo: el casete se ve a través */
+  content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none;
+  background:
+    linear-gradient(162deg, rgba(255,255,255,.16) 0 18%, rgba(255,255,255,0) 34%),
+    linear-gradient(rgba(20,22,25,.28), rgba(20,22,25,.42));
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.08), inset 0 -10px 18px rgba(0,0,0,.35); }
+.ranura { position: relative; width: 324px; transition: transform .3s var(--ease), opacity .2s; }
+.ranura svg { display: block; width: 100%; height: auto; }
+/* EJECT: la tapa bascula hacia adelante sobre su bisagra inferior y el casete asoma por arriba,
+   dejando ver el foso con los ejes y el cabezal. Los carretes se detienen; la música sigue. */
+.abierta .tapa { transform: rotateX(-22deg) translateY(6px); }
+.abierta .ranura { transform: translateY(-34px); }
+.abierta .tapa::after { background:
+    linear-gradient(162deg, rgba(255,255,255,.22) 0 14%, rgba(255,255,255,0) 30%),
+    linear-gradient(rgba(20,22,25,.18), rgba(20,22,25,.5)); }
+.abierta .carrete { animation-play-state: paused !important; }
+
+.estuche-tecla { background: var(--negro); padding: 6px; border-radius: 6px; }
+.eject { width: 100%; height: 54px; display: flex; gap: 10px; align-items: center; justify-content: center; font: 800 14px/1 Archivo; letter-spacing: .16em; }
+.ico-eject { width: 22px; height: 22px; fill: var(--negro); }
+
+/* ── Casete (SVG) ────────────────────────────────────── */
+.carrete { transform-box: fill-box; transform-origin: center; }
+body[data-sonando="si"] .ranura .carrete { animation: girar 2.4s linear infinite; }   /* giran solo mientras suena */
+@keyframes girar { to { transform: rotate(-360deg); } }
+
+/* ── Estante de casetes (al pulsar EJECT) ────────────── */
+.cuerpo > .centro, .cuerpo > .lateral { transition: opacity .18s ease-out; }
+.estante-abierto .cuerpo > .centro, .estante-abierto .cuerpo > .lateral { opacity: 0; }   /* el video sigue sonando; solo se oculta */
+.estante { position: absolute; top: 48px; left: calc(50% - 912px + 436px); width: 1388px; height: 606px; z-index: 20;
+  padding: 12px; background: var(--negro); border-radius: 12px; box-shadow: 0 18px 40px rgba(21,22,24,.4);
+  opacity: 0; transform: translateX(-28px); pointer-events: none; transition: opacity .22s ease-out, transform .32s var(--ease); }
+.estante-abierto .estante { opacity: 1; transform: none; pointer-events: auto; }
+.estante-marco { height: 100%; border-radius: 6px; background: linear-gradient(180deg, #F4F5F6, #DADDE1);
+  display: grid; grid-template-columns: 520px 1fr; grid-template-rows: auto 1fr; }
+.estante-cab { grid-column: 1; display: flex; justify-content: space-between; padding: 20px 28px 0;
+  font: 800 14px/1 Archivo; letter-spacing: .18em; }
+
+/* Torre de casetes en bucle: el elegido al centro, los vecinos arriba y abajo */
+.carrusel { position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 28px 22px; }
+.escenario { position: relative; width: 100%; flex: 1; }
+.cas { position: absolute; left: 50%; top: 50%; width: 340px; margin: -108px 0 0 -170px; cursor: pointer;
+  transition: transform .36s var(--ease), opacity .36s var(--ease), filter .36s; }
+.cas svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 12px 18px rgba(21,22,24,.35)); }
+.cas[data-d="0"] { transform: none; z-index: 3; }
+.cas[data-d="-1"] { transform: translateY(-172px) scale(.48); filter: saturate(.6) brightness(.92); z-index: 2; }
+.cas[data-d="1"] { transform: translateY(172px) scale(.48); filter: saturate(.6) brightness(.92); z-index: 2; }
+.cas[data-d="-2"] { transform: translateY(-250px) scale(.32); opacity: 0; z-index: 1; pointer-events: none; }   /* invisibles: no deben tapar INSERTAR */
+.cas[data-d="2"] { transform: translateY(250px) scale(.32); opacity: 0; z-index: 1; pointer-events: none; }
+.cas.lejos { opacity: 0; pointer-events: none; }
+.cas.volando { visibility: hidden; }
+.cas.puesto::after { content: "PUESTO"; position: absolute; left: calc(100% + 14px); top: 50%; transform: translateY(-50%);
+  writing-mode: vertical-rl; font: 800 12px/1 Archivo; letter-spacing: .22em; color: var(--rojo-texto); }
+
+.mando { display: grid; grid-template-columns: 70px 1fr 70px; gap: 6px; width: 440px; background: var(--negro); padding: 6px; border-radius: 6px; }
+.mando .tecla { height: 56px; }
+.mando .insertar { font: 800 15px/1 Archivo; letter-spacing: .16em; }
+.mando .ico { transform: rotate(90deg); }
+
+/* Carátula interior (J-card): la lista de canciones del casete */
+.jcard { grid-column: 2; grid-row: 1 / -1; margin: 18px 18px 18px 0; border-radius: 4px; padding: 22px 26px 18px;
+  background: #F3EEE3; box-shadow: 0 0 0 1px rgba(21,22,24,.12), 0 6px 14px rgba(21,22,24,.12);
+  display: flex; flex-direction: column; min-height: 0; position: relative; }
+.jcard::before { content: ""; position: absolute; left: 0; right: 0; top: 74px; height: 1px; background: rgba(21,22,24,.18); }
+.jcard h2 { font: 800 34px/1 Archivo; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jcard .sub { margin-top: 8px; font: 700 13px/1 Archivo; letter-spacing: .16em; color: var(--gris); }
+.pistas { list-style: none; padding: 0; margin-top: 24px; flex: 1; min-height: 0;
+  display: grid; grid-template-rows: repeat(12, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 28px; }
+.pista { width: 100%; height: 100%; display: grid; grid-template-columns: 58px 1fr 76px; gap: 10px; align-items: center; text-align: left;
+  padding: 0 8px; border-top: 1px dotted rgba(21,22,24,.28); transition: background .12s; }
+.pista:hover { background: rgba(21,22,24,.06); }
+.pista .f { font: 800 17px/1 Archivo; }
+.pista .t { font: 700 14px/1.2 Archivo; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pista .d { font: 700 13px/1 Archivo; color: var(--gris); text-align: right; white-space: nowrap; }
+.pista.on .f, .pista.on .t { color: var(--rojo-texto); }
+.pista.fallida { opacity: .45; }
+.pista.fallida .t { text-decoration: line-through; }
+
+/* Vuelo del casete al insertarlo: clon fijo sobre todo */
+.clon { position: fixed; z-index: 100; pointer-events: none; }
+.clon svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 12px 18px rgba(21,22,24,.35)); }
 
 /* ── Dial ─────────────────────────────────────────────── */
-.caja-dial { position: absolute; left: calc(50% - 912px); width: 1824px; bottom: 26px; height: 290px; padding: 12px; background: var(--negro); border-radius: 12px; }
+.caja-dial { position: absolute; left: calc(50% - 912px); width: 1824px; bottom: 26px; height: 340px; padding: 12px; background: var(--negro); border-radius: 12px; }
 .dial { position: relative; height: 100%; border-radius: 6px; overflow: hidden; background: linear-gradient(180deg, #F4F5F6, #DADDE1); }
 .dial-cab { position: absolute; left: 24px; right: 24px; top: 14px; display: flex; justify-content: space-between; align-items: center; font: 800 14px/1 Archivo; letter-spacing: .18em; }
 .dial-cab .jp { font-size: 15px; letter-spacing: .1em; color: var(--rojo-texto); }
+.dial-cab .casete-nombre { color: var(--rojo-texto); }
 .piloto { display: inline-block; width: 11px; height: 11px; margin-right: 9px; border-radius: 50%; vertical-align: -1px;
   background: radial-gradient(circle at 35% 30%, #A0A5AB, #6E747B); box-shadow: 0 1px 2px rgba(0,0,0,.35); transition: background .2s; }
 body:not([data-sonando="no"]) .piloto { background: radial-gradient(circle at 35% 30%, #FF7A7F, var(--rojo) 60%); }
 
-.banda-caja { position: absolute; left: 40px; right: 72px; top: 40px; bottom: 12px; }   /* los rótulos inclinados salen hacia la derecha: el último necesita más aire */
+/* Sin barra de desplazamiento: si el casete no cabe, la banda se arrastra con el puntero (o la rueda),
+   y los bordes se desvanecen del lado donde quedan estaciones fuera de vista. */
+.banda-caja { position: absolute; left: 24px; right: 24px; top: 40px; bottom: 26px; overflow: hidden; scrollbar-width: none; }
+.banda-caja::-webkit-scrollbar { display: none; }
+.banda-caja.desplazable { cursor: grab; touch-action: pan-y;
+  mask-image: linear-gradient(90deg, rgba(0,0,0,var(--fade-i, 0)), #000 56px, #000 calc(100% - 56px), rgba(0,0,0,var(--fade-d, 0))); }
+.banda-caja.arrastrando { cursor: grabbing; user-select: none; }
+.banda-caja.arrastrando .est { pointer-events: none; }
+.pista-banda { position: relative; height: 100%; }   /* su ancho lo fija app.js: 100 px por estación si no caben */
 .flecha { width: 15px; height: 15px; fill: currentColor; vertical-align: -3px; }
 .flecha.izq { transform: scaleX(-1); }
-.banda { list-style: none; padding: 0; position: absolute; inset: 0; display: grid; grid-template-columns: repeat(var(--n, 16), 1fr); }
+.banda { list-style: none; padding: 0; position: absolute; inset: 0 64px 0 16px; display: grid; grid-template-columns: repeat(var(--n, 16), 1fr); }   /* los rótulos inclinados salen hacia la derecha: el último necesita más aire */
 .banda li { position: relative; }
+.banda.cambiando { animation: sintonia .42s var(--ease); }
+@keyframes sintonia { from { opacity: 0; transform: translateX(24px); } }
 .est { position: absolute; inset: 0; width: 100%; }
-.est .nombre { position: absolute; left: 50%; margin-left: 8px; bottom: 92px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+.est .nombre { position: absolute; left: 50%; margin-left: 8px; bottom: 104px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;
   transform-origin: left bottom; transform: rotate(-38deg); white-space: nowrap; font: 700 16px/1.1 Archivo; color: #2A2D32; transition: color .15s; }
-.est .marca-esc { position: absolute; left: 50%; bottom: 46px; width: 2px; height: 40px; background: var(--negro); transform: translateX(-50%); }
-.est::after { content: ""; position: absolute; left: 0; right: 0; bottom: 46px; height: 14px;
+.est .marca-esc { position: absolute; left: 50%; bottom: 52px; width: 2px; height: 40px; background: var(--negro); transform: translateX(-50%); }
+.est::after { content: ""; position: absolute; left: 0; right: 0; bottom: 52px; height: 14px;
   background: repeating-linear-gradient(90deg, rgba(21,22,24,.5) 0 1px, transparent 1px 20%); }
-.est .mhz { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font: 800 21px/1 Archivo; }
-.est .dur { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); white-space: nowrap; font: 700 12px/1 Archivo; color: var(--gris); }
+.est .mhz { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font: 800 21px/1 Archivo; }
+.est .dur { position: absolute; left: 50%; bottom: 2px; transform: translateX(-50%); white-space: nowrap; font: 700 12px/1 Archivo; color: var(--gris); }
 .est .dur.vivo { color: var(--mostaza-texto); font-weight: 800; }
 .est:hover .nombre, .est.vista .nombre { color: var(--negro); }
 .est:hover .marca-esc, .est.vista .marca-esc { height: 46px; }
@@ -226,12 +293,14 @@ body:not([data-sonando="no"]) .piloto { background: radial-gradient(circle at 35
 .est.fallida .marca-esc, .est.fallida .mhz, .est.fallida .dur { opacity: .4; }
 .est:focus-visible { outline-offset: -4px; }
 
-.aguja { position: absolute; top: -8px; bottom: 42px; left: 0; width: 4px; margin-left: -2px; background: var(--rojo);
+.aguja { position: absolute; top: -4px; bottom: 46px; left: 0; width: 4px; margin-left: -2px; background: var(--rojo);
   cursor: grab; touch-action: none; transition: left .28s var(--ease); z-index: 3; }
 .aguja::before { content: ""; position: absolute; top: 0; bottom: 0; left: -14px; right: -14px; }
 .aguja.arrastrando { transition: none; cursor: grabbing; }
 .franja-pie { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: linear-gradient(90deg, var(--arena) 0 33.3%, var(--cafe) 33.3% 66.6%, var(--negro) 66.6%); }
 
 @media (prefers-reduced-motion: reduce) {
-  .aguja, .cuerpo, .cubierta, .lcd-banderas span, .lcd-fila, .lcd-freq { transition: none; }
+  .aguja, .cubierta, .lcd-banderas span, .lcd-fila, .lcd-freq,
+  .tapa, .ranura, .estante, .cas, .cuerpo > .centro, .cuerpo > .lateral { transition: none; }
+  body[data-sonando="si"] .ranura .carrete, .banda.cambiando { animation: none; }
 }

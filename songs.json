@@ -1,8 +1,15 @@
 {
-  "actualizado": "2026-11-10T21:43:22.483Z",
+  "actualizado": "2026-11-13T16:28:47.772Z",
+  "grupos": [
+    {
+      "nombre": "General",
+      "paso": 1.2
+    }
+  ],
   "canciones": [
     {
       "id": "GlmwkPdkaN4",
+      "grupo": "General",
       "freq": 88.1,
       "titulo": "You are creating something no one can imagine | The Imitation Game Soundtrack",
       "corto": "The Imitation Game",
@@ -12,6 +19,7 @@
     },
     {
       "id": "DQZvySSvZLU",
+      "grupo": "General",
       "freq": 89.3,
       "titulo": "Beethoven Virus - Extended",
       "corto": "Beethoven Virus",
@@ -21,6 +29,7 @@
     },
     {
       "id": "5i0Z0E5yaYI",
+      "grupo": "General",
       "freq": 90.5,
       "titulo": "Work Music For Concentration and Focus — Noir Chillstep Playlist",
       "corto": "Noir Chillstep",
@@ -30,6 +39,7 @@
     },
     {
       "id": "aISfc41pOIY",
+      "grupo": "General",
       "freq": 91.7,
       "titulo": "Classical Music for Working Out",
       "corto": "Clásica · ejercicio",
@@ -39,6 +49,7 @@
     },
     {
       "id": "OkVysubiDWU",
+      "grupo": "General",
       "freq": 92.9,
       "titulo": "Anakin’s Relief – STAR WARS Ambient Music to Find Peace in the Force | Relax & Focus",
       "corto": "Alivio de Anakin",
@@ -48,6 +59,7 @@
     },
     {
       "id": "hzLdZWIeq3c",
+      "grupo": "General",
       "freq": 94.1,
       "titulo": "best of øneheart // ambient mix",
       "corto": "øneheart",
@@ -57,6 +69,7 @@
     },
     {
       "id": "YD1BdbNHTx8",
+      "grupo": "General",
       "freq": 95.3,
       "titulo": "RE3 \"[Still] Free From Fear\" revisited",
       "corto": "Free From Fear",
@@ -65,16 +78,18 @@
       "envivo": false
     },
     {
-      "id": "D8R2EzQxYjU",
+      "id": "w_kGSmMNH90",
+      "grupo": "General",
       "freq": 96.5,
-      "titulo": "Linkin Park — Full Dark Symphonic Orchestra Cover for Work & Study",
-      "corto": "Linkin Park sinfónico",
-      "canal": "ORKESTRAL",
-      "duracion": 7201,
+      "titulo": "Yakuza 0 OST -Twin Dragons Full Version (Shibusawa Theme)",
+      "corto": "Yakuza 0 OST -Twin…",
+      "canal": "Jack Okami",
+      "duracion": 337,
       "envivo": false
     },
     {
       "id": "sZQy4jvtM1M",
+      "grupo": "General",
       "freq": 97.7,
       "titulo": "The Reiji Collection",
       "corto": "Reiji Collection",
@@ -84,6 +99,7 @@
     },
     {
       "id": "NpQIvKw8F-4",
+      "grupo": "General",
       "freq": 98.9,
       "titulo": "Resident Evil 4 Remake - The Mercenaries | All Character Themes Complete Version HQ [4K] Ultra HD",
       "corto": "Mercenaries",
@@ -93,6 +109,7 @@
     },
     {
       "id": "tRsQsTMvPNg",
+      "grupo": "General",
       "freq": 100.1,
       "titulo": "Claude FM 🎵 music for thinking and building",
       "corto": "Claude FM",
@@ -102,6 +119,7 @@
     },
     {
       "id": "K4m5X23KP1Q",
+      "grupo": "General",
       "freq": 101.3,
       "titulo": "Menu Theme (1 Hour version) - Naruto Shippuden: Ultimate Ninja Storm 3",
       "corto": "Naruto · Menu",
@@ -111,6 +129,7 @@
     },
     {
       "id": "FNSPlshRE_k",
+      "grupo": "General",
       "freq": 102.5,
       "titulo": "an alice in wonderland instrumental playlist",
       "corto": "Alice",
@@ -120,6 +139,7 @@
     },
     {
       "id": "LQrKQVAQ_Q4",
+      "grupo": "General",
       "freq": 103.7,
       "titulo": "You Are the Only One Who Can Do This | Project Hail Mary Soundtrack",
       "corto": "Project Hail Mary",
@@ -129,6 +149,7 @@
     },
     {
       "id": "K7R_xQUiZvg",
+      "grupo": "General",
       "freq": 104.9,
       "titulo": "Yakuza 0 OST - Kuze Theme Full Version (Pledge of Demon Extended)",
       "corto": "Kuze Theme",
@@ -138,6 +159,7 @@
     },
     {
       "id": "dd4IvEflAtA",
+      "grupo": "General",
       "freq": 106.1,
       "titulo": "YUJIRO HANMA | TEKKEN 8 | Extended Remix [Unofficial Visualizer]",
       "corto": "Yujiro Hanma",

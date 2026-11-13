@@ -10,8 +10,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fuentes/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
   <!-- El ?v= obliga al navegador a bajar los archivos nuevos: súbelo cada vez que cambies css o js. -->
-  <link rel="stylesheet" href="css/estilo.css?v=3">
-  <script type="module" src="js/app.js?v=5"></script>
+  <link rel="stylesheet" href="css/estilo.css?v=4">
+  <script type="module" src="js/app.js?v=6"></script>
 </head>
 <body data-sonando="no">
 
@@ -21,56 +21,73 @@
   <symbol id="i-anterior" viewBox="0 0 24 24"><rect x="4" y="5" width="3" height="14" rx="1"/><path d="M19 5v14L9 12z"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M3 10.5h12V5l7 7-7 7v-5.5H3z"/></symbol>
   <symbol id="i-siguiente" viewBox="0 0 24 24"><path d="M5 5v14l10-7z"/><rect x="17" y="5" width="3" height="14" rx="1"/></symbol>
+  <symbol id="i-eject" viewBox="0 0 24 24"><path d="M12 4l8 9H4z"/><rect x="4" y="16" width="16" height="3.5" rx="1"/></symbol>
 </svg>
 
 <div class="escena" id="escena">
-
-  <header class="cabecera">
-    <div class="marca">
-      <h1>ESTUDIO FM</h1>
-      <span class="jp" lang="ja">ステレオ・ラジオ</span>
-    </div>
-    <button type="button" class="boton-lista" id="btn-lista" aria-expanded="false" aria-controls="lista">LISTA</button>
-  </header>
   <div class="franjas" aria-hidden="true"><i></i><i></i><i></i></div>
 
-  <main class="cuerpo">
+  <main class="cuerpo" id="cuerpo">
     <div class="izquierda">
-    <div class="parlante" aria-hidden="true"></div>
-    <div class="volumen">
-      <div class="perilla" id="perilla" role="slider" tabindex="0" aria-label="Volumen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-valuetext="80 %">
-        <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="perilla-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ECEEF0"/><stop offset="1" stop-color="#A9AFB6"/></linearGradient>
-          </defs>
-          <g id="perilla-marcas" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></g>
-          <text x="24" y="184">0</text>
-          <text x="176" y="184" text-anchor="end">10</text>
-          <text id="perilla-valor" x="100" y="180" text-anchor="middle">VOL</text>
-          <g id="perilla-giro">
-            <circle cx="100" cy="100" r="64" fill="#151618"/>
-            <circle cx="100" cy="100" r="59" fill="none" stroke="#ECEEF0" stroke-opacity=".16" stroke-width="5" stroke-dasharray="2.2 4.2"/>
-            <circle cx="100" cy="100" r="50" fill="url(#perilla-tapa)"/>
-            <circle cx="100" cy="100" r="50" fill="none" stroke="#151618" stroke-opacity=".35" stroke-width="1.5"/>
-            <rect x="97" y="38" width="6" height="26" rx="3" fill="#D2232A"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-    </div>
+      <section class="pletina" id="pletina" aria-label="Pletina de casete">
+        <div class="pletina-cab"><span>STEREO CASSETTE</span><span>LADO A</span></div>
+        <div class="puerta">
+          <div class="foso" aria-hidden="true">
+            <svg viewBox="0 0 352 226" preserveAspectRatio="xMidYMax slice" focusable="false">
+              <!-- interior de la pletina: ejes de arrastre, cabezal y rodillos -->
+              <circle cx="133" cy="104" r="11" fill="#3A3D42"/><circle cx="133" cy="104" r="5" fill="#C9CDD2"/>
+              <circle cx="219" cy="104" r="11" fill="#3A3D42"/><circle cx="219" cy="104" r="5" fill="#C9CDD2"/>
+              <rect x="150" y="196" width="52" height="22" rx="3" fill="#8D9299"/><rect x="164" y="190" width="24" height="10" rx="2" fill="#C9CDD2"/>
+              <circle cx="98" cy="204" r="6" fill="#6E737A"/><circle cx="254" cy="204" r="6" fill="#6E737A"/>
+              <rect x="40" y="214" width="272" height="4" rx="2" fill="#26282C"/>
+            </svg>
+          </div>
+          <div class="tapa"><div class="ranura" id="ranura"></div></div>
+        </div>
+        <div class="estuche-tecla">
+          <button type="button" class="tecla eject" id="btn-eject" aria-expanded="false" aria-controls="estante">
+            <svg class="ico-eject" aria-hidden="true"><use href="#i-eject"/></svg>EJECT
+          </button>
+        </div>
+      </section>
 
-    <div class="ventana">
-      <div class="pantalla" id="pantalla" data-fase="listo">
-        <div class="cubierta" aria-hidden="true">
-          <div class="cubierta-freq" id="cub-freq">--.-</div>
-          <div class="cubierta-msg" id="cub-msg">PULSA PLAY</div>
+      <div class="volumen">
+        <div class="perilla" id="perilla" role="slider" tabindex="0" aria-label="Volumen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-valuetext="80 %">
+          <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="perilla-tapa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ECEEF0"/><stop offset="1" stop-color="#A9AFB6"/></linearGradient>
+            </defs>
+            <g id="perilla-marcas" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></g>
+            <text x="24" y="184">0</text>
+            <text x="176" y="184" text-anchor="end">10</text>
+            <text id="perilla-valor" x="100" y="180" text-anchor="middle">VOL</text>
+            <g id="perilla-giro">
+              <circle cx="100" cy="100" r="64" fill="#151618"/>
+              <circle cx="100" cy="100" r="59" fill="none" stroke="#ECEEF0" stroke-opacity=".16" stroke-width="5" stroke-dasharray="2.2 4.2"/>
+              <circle cx="100" cy="100" r="50" fill="url(#perilla-tapa)"/>
+              <circle cx="100" cy="100" r="50" fill="none" stroke="#151618" stroke-opacity=".35" stroke-width="1.5"/>
+              <rect x="97" y="38" width="6" height="26" rx="3" fill="#D2232A"/>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
 
-    <section class="lateral" aria-label="Lo que suena">
+    <div class="centro" id="centro">
+      <div class="ventana">
+        <div class="pantalla" id="pantalla" data-fase="listo">
+          <div class="cubierta" aria-hidden="true">
+            <div class="cubierta-freq" id="cub-freq">--.-</div>
+            <div class="cubierta-msg" id="cub-msg">PULSA PLAY</div>
+          </div>
+        </div>
+      </div>
+      <div class="placa"><h1>ESTUDIO FM</h1><span class="jp" lang="ja">ステレオ・ラジオ</span></div>
+    </div>
+
+    <section class="lateral" id="lateral" aria-label="Lo que suena">
       <div class="lcd" id="lcd">
-        <div class="lcd-fila"><span>FM STEREO</span><span id="lcd-pos">--/--</span></div>
+        <div class="lcd-fila"><span id="lcd-casete">FM STEREO</span><span id="lcd-pos">--/--</span></div>
         <div class="lcd-freq"><span id="lcd-freq">--.-</span><small>MHz</small></div>
         <div class="lcd-banderas">
           <span id="f-estado">LISTO</span>
@@ -101,23 +118,38 @@
     </section>
   </main>
 
-  <section class="panel-lista" id="lista" aria-label="Lista de estaciones" hidden>
-    <div class="panel-marco">
-      <div class="panel-cab"><span>ESTACIONES</span><span>Esc para cerrar</span></div>
-      <ol class="filas" id="filas"></ol>
+  <!-- Estante: se abre con EJECT sobre el video y la columna derecha. Torre de casetes y carátula con las canciones. -->
+  <section class="estante" id="estante" aria-label="Casetes" inert>
+    <div class="estante-marco">
+      <div class="estante-cab"><span>CASETES · <span id="n-casetes">0</span></span></div>
+      <div class="carrusel">
+        <div class="escenario" id="escenario" aria-hidden="true"></div>
+        <div class="mando">
+          <button type="button" class="tecla" id="cas-ant" aria-label="Casete anterior"><svg class="ico" aria-hidden="true"><use href="#i-anterior"/></svg></button>
+          <button type="button" class="tecla insertar" id="btn-insertar">INSERTAR</button>
+          <button type="button" class="tecla" id="cas-sig" aria-label="Casete siguiente"><svg class="ico" aria-hidden="true"><use href="#i-siguiente"/></svg></button>
+        </div>
+      </div>
+      <div class="jcard">
+        <h2 id="jc-nombre"></h2>
+        <p class="sub" id="jc-sub"></p>
+        <ol class="pistas" id="pistas"></ol>
+      </div>
     </div>
   </section>
 
   <div class="caja-dial">
     <div class="dial">
       <div class="dial-cab">
-        <span><i class="piloto" aria-hidden="true"></i>ESTACIONES DE ESTUDIO · <span id="cuenta">16</span> ESTACIONES</span>
+        <span><i class="piloto" aria-hidden="true"></i>CASETE <span class="casete-nombre" id="dial-casete"></span> · <span id="cuenta">0</span> ESTACIONES</span>
         <span><svg class="flecha izq" aria-hidden="true"><use href="#i-flecha"/></svg> <svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg> SINTONIZAR</span>
         <span class="jp" lang="ja">エフエム 88–108</span>
       </div>
-      <div class="banda-caja">
-        <ol class="banda" id="banda" aria-label="Estaciones"></ol>
-        <div class="aguja" id="aguja" aria-hidden="true"></div>
+      <div class="banda-caja" id="banda-caja">
+        <div class="pista-banda" id="pista-banda">
+          <ol class="banda" id="banda" aria-label="Estaciones"></ol>
+          <div class="aguja" id="aguja" aria-hidden="true"></div>
+        </div>
       </div>
       <div class="franja-pie" aria-hidden="true"></div>
     </div>
