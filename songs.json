@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-13T16:58:11.625Z",
+  "actualizado": "2026-11-16T21:10:33.473Z",
   "grupos": [
     {
       "nombre": "General",
@@ -7,10 +7,22 @@
     },
     {
       "nombre": "Yu-Gi-Oh",
-      "paso": 0.9
+      "paso": 0.7
     },
     {
       "nombre": "Lofi",
+      "paso": 1.2
+    },
+    {
+      "nombre": "Fire Emblem",
+      "paso": 1.2
+    },
+    {
+      "nombre": "Phonk",
+      "paso": 1.2
+    },
+    {
+      "nombre": "Naruto",
       "paso": 1.2
     }
   ],
@@ -188,7 +200,7 @@
     {
       "id": "jGmbGYOc2CQ",
       "grupo": "Yu-Gi-Oh",
-      "freq": 89,
+      "freq": 88.8,
       "titulo": "HQ I Yubel Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
       "corto": "Yubel",
       "canal": "Duel Links Soundtracks!",
@@ -198,7 +210,7 @@
     {
       "id": "3VSucXMBER8",
       "grupo": "Yu-Gi-Oh",
-      "freq": 89.9,
+      "freq": 89.5,
       "titulo": "Yuto Theme - Yu-Gi-Oh! Duel Links / 10 minutes",
       "corto": "Yuto",
       "canal": "Second Blood",
@@ -208,7 +220,7 @@
     {
       "id": "3Epv_PHM3Vg",
       "grupo": "Yu-Gi-Oh",
-      "freq": 90.8,
+      "freq": 90.2,
       "titulo": "Soulburner Theme | Yu-Gi-Oh! Duel Links 遊戯王 デュエルリンクス",
       "corto": "Soulburner",
       "canal": "ガンセック GunSec",
@@ -218,7 +230,7 @@
     {
       "id": "rii-gOJuKLg",
       "grupo": "Yu-Gi-Oh",
-      "freq": 91.7,
+      "freq": 90.9,
       "titulo": "HQ I Reiji Akaba (Declan Akaba) - Arc-V Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
       "corto": "Reiji Akaba",
       "canal": "Duel Links Soundtracks!",
@@ -228,7 +240,7 @@
     {
       "id": "WVy3TnzWGh0",
       "grupo": "Yu-Gi-Oh",
-      "freq": 92.6,
+      "freq": 91.6,
       "titulo": "HQ I Gong Strong - Arc-V Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
       "corto": "Gong Strong",
       "canal": "Duel Links Soundtracks!",
@@ -238,7 +250,7 @@
     {
       "id": "qqVeb_i7mSQ",
       "grupo": "Yu-Gi-Oh",
-      "freq": 93.5,
+      "freq": 92.3,
       "titulo": "HQ | Summon Ace Card Theme ARC V Extended (Soundtrack) | Yu-Gi-Oh! Duel Links!",
       "corto": "Summon Ace Card",
       "canal": "SirBingChilling YGO",
@@ -248,7 +260,7 @@
     {
       "id": "ojTRy8VzJDY",
       "grupo": "Yu-Gi-Oh",
-      "freq": 94.4,
+      "freq": 93,
       "titulo": "ARC-V Ace Monster Theme",
       "corto": "Ace Monster",
       "canal": "SimpHater",
@@ -258,7 +270,7 @@
     {
       "id": "TyAK4VXeyF0",
       "grupo": "Yu-Gi-Oh",
-      "freq": 95.3,
+      "freq": 93.7,
       "titulo": "HQ I Akiza Izinski Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
       "corto": "Akiza",
       "canal": "Duel Links Soundtracks!",
@@ -268,7 +280,7 @@
     {
       "id": "fkxsGozk9FE",
       "grupo": "Yu-Gi-Oh",
-      "freq": 96.2,
+      "freq": 94.4,
       "titulo": "HQ I Kalin Kessler Theme (Soundtrack) ~ Extended | Yu-Gi-Oh! Duel Links",
       "corto": "Kalin Kessler",
       "canal": "Duel Links Soundtracks!",
@@ -278,7 +290,7 @@
     {
       "id": "R_l1hEZg0_0",
       "grupo": "Yu-Gi-Oh",
-      "freq": 97.1,
+      "freq": 95.1,
       "titulo": "Duel of Rebellion -反逆のデュエル - [Perfect Loop]",
       "corto": "Duel of Rebellion",
       "canal": "Ken Matsumoto",
@@ -288,7 +300,7 @@
     {
       "id": "wIGx_IQ6MRI",
       "grupo": "Yu-Gi-Oh",
-      "freq": 98,
+      "freq": 95.8,
       "titulo": "Yuto's Passionate Soul x Duel of Rebellion",
       "corto": "Yuto × Rebellion",
       "canal": "Ohrot",
@@ -298,7 +310,7 @@
     {
       "id": "zkJP1jlGeJw",
       "grupo": "Yu-Gi-Oh",
-      "freq": 98.9,
+      "freq": 96.5,
       "titulo": "【遊戯王GX】Yu Gi Oh! GX Sad Duel 【悲しいデュエル】Supreme King Theme EPIC Guitar Cover METAL/ROCK",
       "corto": "Supreme King",
       "canal": "B.O.D GUITAR",
@@ -308,7 +320,7 @@
     {
       "id": "ntAqcVR-2-g",
       "grupo": "Yu-Gi-Oh",
-      "freq": 99.8,
+      "freq": 97.2,
       "titulo": "【遊戯王5D's】Yu-Gi-Oh! 5D's Jack Battle Theme 【ジャックバトル】 Guitar Cover Metal/Rock",
       "corto": "Jack Battle",
       "canal": "B.O.D GUITAR",
@@ -318,7 +330,7 @@
     {
       "id": "4jQrdcKt7T4",
       "grupo": "Yu-Gi-Oh",
-      "freq": 100.7,
+      "freq": 97.9,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - The Complete Collection",
       "corto": "Master Duel BGM",
       "canal": "Entertainment Duelist",
@@ -328,7 +340,7 @@
     {
       "id": "jjMYR2TWA18",
       "grupo": "Yu-Gi-Oh",
-      "freq": 101.6,
+      "freq": 98.6,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #1",
       "corto": "Master Duel #1",
       "canal": "Entertainment Duelist",
@@ -338,7 +350,7 @@
     {
       "id": "KqA2i5VXcMo",
       "grupo": "Yu-Gi-Oh",
-      "freq": 102.5,
+      "freq": 99.3,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #2",
       "corto": "Master Duel #2",
       "canal": "Entertainment Duelist",
@@ -348,7 +360,7 @@
     {
       "id": "1P4WvcnOlC8",
       "grupo": "Yu-Gi-Oh",
-      "freq": 103.4,
+      "freq": 100,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #3",
       "corto": "Master Duel #3",
       "canal": "Entertainment Duelist",
@@ -358,7 +370,7 @@
     {
       "id": "Vk38XLBB1lY",
       "grupo": "Yu-Gi-Oh",
-      "freq": 104.3,
+      "freq": 100.7,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #4",
       "corto": "Master Duel #4",
       "canal": "Entertainment Duelist",
@@ -368,7 +380,7 @@
     {
       "id": "T9nwlyN3Gw0",
       "grupo": "Yu-Gi-Oh",
-      "freq": 105.2,
+      "freq": 101.4,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #5",
       "corto": "Master Duel #5",
       "canal": "Entertainment Duelist",
@@ -378,7 +390,7 @@
     {
       "id": "RIGlKCKp5Iw",
       "grupo": "Yu-Gi-Oh",
-      "freq": 106.1,
+      "freq": 102.1,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #12",
       "corto": "Master Duel #12",
       "canal": "Entertainment Duelist",
@@ -388,7 +400,7 @@
     {
       "id": "Tm12rEFddH8",
       "grupo": "Yu-Gi-Oh",
-      "freq": 107,
+      "freq": 102.8,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #15",
       "corto": "Master Duel #15",
       "canal": "Entertainment Duelist",
@@ -398,11 +410,61 @@
     {
       "id": "IOnepUUfboc",
       "grupo": "Yu-Gi-Oh",
-      "freq": 107.9,
+      "freq": 103.5,
       "titulo": "Yu-Gi-Oh! Master Duel BGM - Complete Theme #16",
       "corto": "Master Duel #16",
       "canal": "Entertainment Duelist",
       "duracion": 295,
+      "envivo": false
+    },
+    {
+      "id": "790B7Ro4fE0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 104.2,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Climax Theme #15 (Extended)",
+      "corto": "Climax #15",
+      "canal": "Entertainment Duelist",
+      "duracion": 361,
+      "envivo": false
+    },
+    {
+      "id": "g05n2wGfDzQ",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 104.9,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Climax Theme #4 (Extended)",
+      "corto": "Climax #4",
+      "canal": "Entertainment Duelist",
+      "duracion": 353,
+      "envivo": false
+    },
+    {
+      "id": "7lyHl1FSdM0",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 105.6,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Climax Theme #12 (Extended)",
+      "corto": "Climax #12",
+      "canal": "Entertainment Duelist",
+      "duracion": 361,
+      "envivo": false
+    },
+    {
+      "id": "4dki6m91Rbg",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 106.3,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Climax Theme #1 (Extended)",
+      "corto": "Climax #1",
+      "canal": "Entertainment Duelist",
+      "duracion": 361,
+      "envivo": false
+    },
+    {
+      "id": "mdtbHt-iNxw",
+      "grupo": "Yu-Gi-Oh",
+      "freq": 107,
+      "titulo": "Yu-Gi-Oh! Master Duel BGM - Climax Theme #3 (Extended)",
+      "corto": "Climax #3",
+      "canal": "Entertainment Duelist",
+      "duracion": 367,
       "envivo": false
     },
     {
@@ -493,6 +555,256 @@
       "corto": "12 A.M Study Session 📚",
       "canal": "Lofi Girl",
       "duracion": 3448,
+      "envivo": false
+    },
+    {
+      "id": "1Tl2FtV06qo",
+      "grupo": "Lofi",
+      "freq": 98.9,
+      "titulo": "asian lofi radio ⛩️ beats to relax/study to",
+      "corto": "Asian lofi radio",
+      "canal": "Lofi Girl",
+      "duracion": null,
+      "envivo": true
+    },
+    {
+      "id": "CwPCy1GLS38",
+      "grupo": "Lofi",
+      "freq": 100.1,
+      "titulo": "sad lofi radio ☔ beats for rainy days",
+      "corto": "Sad lofi radio",
+      "canal": "Lofi Girl",
+      "duracion": null,
+      "envivo": true
+    },
+    {
+      "id": "SJXwqcbrCjo",
+      "grupo": "Fire Emblem",
+      "freq": 88.1,
+      "titulo": "Fire Emblem - The Apex of the World (Rain/Thunder/Inferno)",
+      "corto": "Apex of the World",
+      "canal": "Devon Chau",
+      "duracion": 1103,
+      "envivo": false
+    },
+    {
+      "id": "jx1lEjTQN5w",
+      "grupo": "Fire Emblem",
+      "freq": 89.3,
+      "titulo": "Fire Emblem Three Houses Between Heaven and Earth (Rain Thunder Mix)",
+      "corto": "Heaven and Earth · lluvia",
+      "canal": "Ashen Wolf",
+      "duracion": 357,
+      "envivo": false
+    },
+    {
+      "id": "uXByBCqHBn4",
+      "grupo": "Fire Emblem",
+      "freq": 90.5,
+      "titulo": "Fire Emblem Three Houses OST: Between Heaven And Earth Extended (Thunder Version)",
+      "corto": "Heaven and Earth · trueno",
+      "canal": "Intekam",
+      "duracion": 699,
+      "envivo": false
+    },
+    {
+      "id": "VMYDhqVwJWU",
+      "grupo": "Fire Emblem",
+      "freq": 91.7,
+      "titulo": "Best Of: Fire Emblem ~ Three Houses OST",
+      "corto": "Best of Three Houses",
+      "canal": "Dalos",
+      "duracion": 10748,
+      "envivo": false
+    },
+    {
+      "id": "FSXuM2v0YLY",
+      "grupo": "Fire Emblem",
+      "freq": 92.9,
+      "titulo": "Seasons of Warfare - Lady of Hresvelg (The Edge of Dawn) Full Ver.",
+      "corto": "Lady of Hresvelg",
+      "canal": "twiilit_",
+      "duracion": 298,
+      "envivo": false
+    },
+    {
+      "id": "ChrMFuAu96E",
+      "grupo": "Fire Emblem",
+      "freq": 94.1,
+      "titulo": "Fire Emblem: Three Houses - Unfufilled EXTENDED",
+      "corto": "Unfulfilled",
+      "canal": "Steph",
+      "duracion": 942,
+      "envivo": false
+    },
+    {
+      "id": "-S8KyKEX5vc",
+      "grupo": "Phonk",
+      "freq": 88.1,
+      "titulo": "2 PHUT HON Funk - SALESMAN Best part looped EDIT 〔 Slowed + Reverb Phonk〕 4K",
+      "corto": "2 Phut Hon",
+      "canal": "sniperrxedits",
+      "duracion": 331,
+      "envivo": false
+    },
+    {
+      "id": "Ku5h_u5VCLg",
+      "grupo": "Phonk",
+      "freq": 89.3,
+      "titulo": "NO BATIDÃO - ZXKAI (Super Slowed) x Augusta",
+      "corto": "No Batidão · Zxkai",
+      "canal": "VibeKiller Phonk",
+      "duracion": 184,
+      "envivo": false
+    },
+    {
+      "id": "ovj8Gb_cVgY",
+      "grupo": "Phonk",
+      "freq": 90.5,
+      "titulo": "NO BATIDAO",
+      "corto": "No Batidão",
+      "canal": "MAFIA",
+      "duracion": 269,
+      "envivo": false
+    },
+    {
+      "id": "34Pl2DTuwoQ",
+      "grupo": "Phonk",
+      "freq": 91.7,
+      "titulo": "TUCA DONKA + HAKARI DANCE 4k | LONG VERSION",
+      "corto": "Tuca Donka",
+      "canal": "GANGSTER CITY",
+      "duracion": 224,
+      "envivo": false
+    },
+    {
+      "id": "rMNo3MKiNb8",
+      "grupo": "Phonk",
+      "freq": 92.9,
+      "titulo": "TRXVELER - TREINAMENTO DE FORÇA",
+      "corto": "Treinamento de Força",
+      "canal": "EUPHXRIA",
+      "duracion": 126,
+      "envivo": false
+    },
+    {
+      "id": "2acCAJY1_gM",
+      "grupo": "Phonk",
+      "freq": 94.1,
+      "titulo": "Bibi babydoll - Automotivo bibi fogosa (Full version + Slowed + reverb)",
+      "corto": "Bibi Fogosa",
+      "canal": "Vanhedit",
+      "duracion": 170,
+      "envivo": false
+    },
+    {
+      "id": "1Op4wbVkZJk",
+      "grupo": "Phonk",
+      "freq": 95.3,
+      "titulo": "VAI VAI TRAIR - DJ Asul (Super Slowed) x Toru Hagakure",
+      "corto": "Vai Vai Trair",
+      "canal": "Sato",
+      "duracion": 224,
+      "envivo": false
+    },
+    {
+      "id": "IqeucR5Rhlc",
+      "grupo": "Phonk",
+      "freq": 96.5,
+      "titulo": "LUA NA PRAÇA ( Slowed ) - Dj Samir | Umamusume Edit | Oguri Cap x Cinderella grey (Gray Phantom)",
+      "corto": "Lua na Praça",
+      "canal": "Ms. Victoria",
+      "duracion": 102,
+      "envivo": false
+    },
+    {
+      "id": "igs149KCTgA",
+      "grupo": "Phonk",
+      "freq": 97.7,
+      "titulo": "NCTS - NEXT!",
+      "corto": "NCTS · Next!",
+      "canal": "TheGoodVibe",
+      "duracion": 103,
+      "envivo": false
+    },
+    {
+      "id": "uZEAYgGgQDg",
+      "grupo": "Naruto",
+      "freq": 88.1,
+      "titulo": "NARUTO SHIPPUDEN: Ultimate Ninja STORM 2 - The Calm Before The Storm (林忠坚 LTK Remastered)",
+      "corto": "Calm Before the Storm · LTK",
+      "canal": "林忠坚 LTK",
+      "duracion": 281,
+      "envivo": false
+    },
+    {
+      "id": "WkZnRNbrBTI",
+      "grupo": "Naruto",
+      "freq": 89.3,
+      "titulo": "Naruto Shippuden: Ultimate Ninja Storm 2- The Calm Before the Storm (Menu/Character Select Music)",
+      "corto": "Calm Before the Storm",
+      "canal": "TURNERA0921",
+      "duracion": 284,
+      "envivo": false
+    },
+    {
+      "id": "6612stEpkKs",
+      "grupo": "Naruto",
+      "freq": 90.5,
+      "titulo": "Naruto Shippuden Ultimate Ninja Storm 2 - The Uchiha Hideout Soundtrack",
+      "corto": "Uchiha Hideout",
+      "canal": "The Awaited One",
+      "duracion": 160,
+      "envivo": false
+    },
+    {
+      "id": "dCbXhFWpBHQ",
+      "grupo": "Naruto",
+      "freq": 91.7,
+      "titulo": "Naruto Ultimate Ninja Storm 2 OST - He Who Howls and Rages",
+      "corto": "He Who Howls and Rages",
+      "canal": "SteelixofGold",
+      "duracion": 169,
+      "envivo": false
+    },
+    {
+      "id": "E6ixjdCOOpQ",
+      "grupo": "Naruto",
+      "freq": 92.9,
+      "titulo": "Naruto Shippuden Ultimate Ninja Storm 2 - The Beast Set Loose Soundtrack",
+      "corto": "Beast Set Loose",
+      "canal": "The Awaited One",
+      "duracion": 160,
+      "envivo": false
+    },
+    {
+      "id": "t8MW0Em3dTs",
+      "grupo": "Naruto",
+      "freq": 94.1,
+      "titulo": "Naruto Ultimate Ninja Storm 2 OST - Friend Fight Each Other",
+      "corto": "Friends Fight",
+      "canal": "SteelixofGold",
+      "duracion": 180,
+      "envivo": false
+    },
+    {
+      "id": "4X37hQQjmPw",
+      "grupo": "Naruto",
+      "freq": 95.3,
+      "titulo": "Naruto shippuden Ultimate Ninja Storm 3 - [ Main Menu Theme ]",
+      "corto": "Storm 3 · Menú",
+      "canal": "Jess Macasieb",
+      "duracion": 443,
+      "envivo": false
+    },
+    {
+      "id": "W8uQOdRXARI",
+      "grupo": "Naruto",
+      "freq": 96.5,
+      "titulo": "Naruto Storm 3 - Character Select Theme OST",
+      "corto": "Storm 3 · Personajes",
+      "canal": "SpyroulGaming",
+      "duracion": 236,
       "envivo": false
     }
   ]
